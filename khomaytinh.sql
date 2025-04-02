@@ -328,7 +328,36 @@ INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) V
 (7, 'taikhoan', 'view', '[]'),
 (7, 'thongke', 'view', '[]'),
 (7, 'tonkho', 'update', '[]'),
-(7, 'tonkho', 'view', '[]');
+(7, 'tonkho', 'view', '[]'),
+(3, 'donnghi', 'create', '[]'),
+(3, 'donnghi', 'update', '[]'),
+(3, 'donnghi', 'view', '[]'),
+(3, 'bangluong', 'view', '[]'),
+(3, 'nhanvien', 'update', '[]'),
+(3, 'nhanvien', 'view', '[]'),
+(4, 'nhanvien', 'update', '[]'),
+(4, 'nhanvien', 'view', '[]'),
+(4, 'donnghi', 'create', '[]'),
+(4, 'donnghi', 'update', '[]'),
+(4, 'donnghi', 'view', '[]'),
+(4, 'bangluong', 'view', '[]'),
+(6, 'nhanvien', 'create', '[]'),
+(6, 'nhanvien', 'delete', '[]'),
+(6, 'nhanvien', 'update', '[]'),
+(6, 'nhanvien', 'view', '[]'),
+(6, 'bangluong', 'create', '[]'),
+(6, 'bangluong', 'update', '[]'),
+(6, 'bangluong', 'view', '[]'),
+(6, 'chucvu', 'create', '[]'),
+(6, 'chucvu', 'update', '[]'),
+(6, 'chucvu', 'view', '[]'),
+(6, 'donnghi', 'create', '[]'),
+(6, 'donnghi', 'delete', '[]'),
+(6, 'donnghi', 'update', '[]'),
+(6, 'donnghi', 'view', '[]'),
+(6, 'thongkeluong', 'create', '[]'),
+(6, 'thongkeluong', 'update', '[]'),
+(6, 'thongkeluong', 'view', '[]');
 -- --------------------------------------------------------
 
 --
@@ -354,8 +383,12 @@ INSERT INTO `chucnang` (`machucnang`, `tenchucnang`, `trangthai`) VALUES
 ('sanpham', 'Quản lý sản phẩm', 1),
 ('taikhoan', 'Quản lý tài khoản', 1),
 ('thongke', 'Thống kê', 1),
-('tonkho', 'Quản lý tồn kho', 1);
-
+('tonkho', 'Quản lý tồn kho', 1),
+('nhanvien', 'Quản lý nhân viên', 1),
+('bangluong', 'Quản lý bảng lương', 1),
+('thongkeluong', 'Thống kê lương', 1),
+('donnghi', 'Quản lý nghỉ phép', 1),
+('chucvu', 'Quản lý chức vụ', 1);
 -- --------------------------------------------------------
 
 --
