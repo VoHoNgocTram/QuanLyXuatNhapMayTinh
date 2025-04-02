@@ -792,7 +792,8 @@ CREATE TABLE `bangluong` (
   `thuong` int DEFAULT 0,
   `truluong` int DEFAULT 0,
   `tongluong` int NOT NULL,
-  `ngaytinhluong` DATE NOT NULL
+  `ngaytinhluong` DATE NOT NULL,
+  `songaycong` INT DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
