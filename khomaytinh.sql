@@ -718,15 +718,14 @@ CREATE TABLE `nhanvien` (
   `machucvu` int(11) NOT NULL,
   `ngayvaolam` date NOT NULL,
   `songayphep` int DEFAULT 12,
-  `luongcoban` decimal(10,2) NOT NULL,
+  `luongcoban` INT NOT NULL,
   `trangthai` enum('Đang làm','Nghỉ việc') DEFAULT 'Đang làm'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
+ALTER TABLE `nhanvien`
+ADD COLUMN `taikhoan` VARCHAR(255);
 --
 -- Dumping data for table `nhanvien`
 --
-
 
 
 --
@@ -747,8 +746,16 @@ CREATE TABLE `chucvu` (
 
 
 --
--- Dumping data for table `trangthaiphieunhap`
+-- Dumping data for table `chucvu`
 --
+
+INSERT INTO `chucvu` (`machucvu`, `tenchucvu`, `luongcoban`) VALUES
+(1, 'Quản lý kho', 12000000),
+(2, 'Quản lý nhân sự', 13000000),
+(3, 'Quản lý kinh doanh', 15000000),
+(4, 'Nhân viên nhập kho', 9000000),
+(5, 'Nhân viên xuất kho', 9000000);
+
 
 
 
@@ -759,7 +766,7 @@ CREATE TABLE `chucvu` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chucvu`
+-- Table structure for table `lichsuchucvu`
 --
 
 CREATE TABLE `lichsuchucvu` (
@@ -1091,6 +1098,12 @@ ALTER TABLE `trangthaiphieunhap`
   MODIFY `matrangthai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `chucvu`
+--
+ALTER TABLE `chucvu`
+  MODIFY `machucvu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -1157,7 +1170,8 @@ ALTER TABLE `sanpham`
 --
 ALTER TABLE `nhanvien`
   ADD CONSTRAINT `FK_NHANVIEN_CHUCVU` FOREIGN KEY (`machucvu`) REFERENCES `chucvu` (`machucvu`) ON DELETE CASCADE ON UPDATE CASCADE;
-  
+
+ 
 --
 -- Constraints for table `lichsuchucvu`
 --
