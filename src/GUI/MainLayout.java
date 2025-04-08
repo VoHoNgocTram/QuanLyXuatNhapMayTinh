@@ -35,7 +35,7 @@ public class MainLayout extends javax.swing.JFrame {
         this.user = user;
         this.permission = permission;
         this.permissionInfo = permissionInfo;
-        javax.swing.JPanel[] panels = {Kho, NhaCungCap, PhieuNhap, PhieuXuat, SanPham, TaiKhoan, ThongKe};
+        javax.swing.JPanel[] panels = {Kho, NhaCungCap, PhieuNhap, PhieuXuat, SanPham, TaiKhoan, ThongKe, NhanVien};
         hideAllControllers(panels);
         authorize(panels, permission);
         lblFullName.setText(user.getHoTen());
@@ -93,13 +93,17 @@ public class MainLayout extends javax.swing.JFrame {
                 ThongKeMouseClicked(null);
                 ThongKeMousePressed(null);
                 break;
+            case "nhanvien":
+                NhanVienMouseClicked(null);
+                NhanVienMousePressed(null);
+                break;
             default:
                 
         }
     }
     
     private void resetBackgroundAllPanels() {
-        javax.swing.JPanel[] panels = {Kho, NhaCungCap, PhieuNhap, PhieuXuat, SanPham, TaiKhoan, ThongKe};
+        javax.swing.JPanel[] panels = {Kho, NhaCungCap, PhieuNhap, PhieuXuat, SanPham, TaiKhoan, ThongKe, NhanVien};
         for (javax.swing.JPanel panel : panels) {
             panel.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         }
@@ -135,6 +139,8 @@ public class MainLayout extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         ThongKe = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
+        NhanVien = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
         pSettings = new javax.swing.JPanel();
         Account = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -358,6 +364,30 @@ public class MainLayout extends javax.swing.JFrame {
 
         pNav.add(ThongKe);
 
+        NhanVien.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        NhanVien.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 1));
+        NhanVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        NhanVien.setMinimumSize(new java.awt.Dimension(240, 36));
+        NhanVien.setName("nhanvien"); // NOI18N
+        NhanVien.setPreferredSize(new java.awt.Dimension(240, 36));
+        NhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NhanVienMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                NhanVienMousePressed(evt);
+            }
+        });
+        NhanVien.setLayout(new java.awt.BorderLayout());
+
+        jLabel15.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employee.png"))); // NOI18N
+        jLabel15.setText("Nhân viên");
+        NhanVien.add(jLabel15, java.awt.BorderLayout.CENTER);
+
+        pNav.add(NhanVien);
+
         pSidebar.add(pNav, java.awt.BorderLayout.CENTER);
 
         pSettings.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
@@ -568,6 +598,17 @@ public class MainLayout extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
+    private void NhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NhanVienMouseClicked
+        NhanVienForm nhanVienForm = new NhanVienForm(user);
+        pMainContent.removeAll();
+        pMainContent.add(nhanVienForm).setVisible(true);
+    }//GEN-LAST:event_NhanVienMouseClicked
+
+    private void NhanVienMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NhanVienMousePressed
+        resetBackgroundAllPanels();
+        NhanVien.setBackground(ClickedColor);
+    }//GEN-LAST:event_NhanVienMousePressed
+
     public NguoiDungDTO getUser() {
         return user;
     }
@@ -609,6 +650,7 @@ public class MainLayout extends javax.swing.JFrame {
     private javax.swing.JPanel DangXuat;
     private javax.swing.JPanel Kho;
     private javax.swing.JPanel NhaCungCap;
+    private javax.swing.JPanel NhanVien;
     private javax.swing.JPanel PhieuNhap;
     private javax.swing.JPanel PhieuXuat;
     private javax.swing.JPanel SanPham;
@@ -619,6 +661,7 @@ public class MainLayout extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
