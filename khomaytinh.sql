@@ -333,18 +333,17 @@ INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) V
 (3, 'donnghi', 'update', '[]'),
 (3, 'donnghi', 'view', '[]'),
 (3, 'bangluong', 'view', '[]'),
-(3, 'nhanvien', 'update', '[]'),
-(3, 'nhanvien', 'view', '[]'),
-(4, 'nhanvien', 'update', '[]'),
-(4, 'nhanvien', 'view', '[]'),
+(3, 'taikhoan', 'update', '[]'),
+(3, 'taikhoan', 'view', '[]'),
+(4, 'taikhoan', 'update', '[]'),
+(4, 'taikhoan', 'view', '[]'),
 (4, 'donnghi', 'create', '[]'),
 (4, 'donnghi', 'update', '[]'),
 (4, 'donnghi', 'view', '[]'),
 (4, 'bangluong', 'view', '[]'),
-(6, 'nhanvien', 'create', '[]'),
-(6, 'nhanvien', 'delete', '[]'),
-(6, 'nhanvien', 'update', '[]'),
-(6, 'nhanvien', 'view', '[]'),
+(6, 'taikhoan', 'create', '[]'),
+(6, 'taikhoan', 'delete', '[]'),
+(6, 'taikhoan', 'view', '[]'),
 (6, 'bangluong', 'create', '[]'),
 (6, 'bangluong', 'update', '[]'),
 (6, 'bangluong', 'view', '[]'),
@@ -359,7 +358,20 @@ INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) V
 (6, 'thongkeluong', 'update', '[]'),
 (6, 'thongkeluong', 'view', '[]');
 -- --------------------------------------------------------
-
+INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) VALUES
+(2, 'canhan', 'update', '[]'),
+(2, 'canhan', 'view', '[]'),
+(3, 'canhan', 'update', '[]'),
+(3, 'canhan', 'view', '[]'),
+(4, 'canhan', 'update', '[]'),
+(4, 'canhan', 'view', '[]'),
+(5, 'canhan', 'update', '[]'),
+(5, 'canhan', 'view', '[]'),
+(7, 'canhan', 'update', '[]'),
+(7, 'canhan', 'view', '[]');
+INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) VALUES
+(6, 'canhan', 'update', '[]'),
+(6, 'canhan', 'view', '[]');
 --
 -- Table structure for table `chucnang`
 --
@@ -389,6 +401,8 @@ INSERT INTO `chucnang` (`machucnang`, `tenchucnang`, `trangthai`) VALUES
 ('thongkeluong', 'Thống kê lương', 1),
 ('donnghi', 'Quản lý nghỉ phép', 1),
 ('chucvu', 'Quản lý chức vụ', 1);
+INSERT INTO `chucnang` (`machucnang`, `tenchucnang`, `trangthai`) VALUES
+('canhan', 'Quản lý thông tin cá nhân', 1);
 -- --------------------------------------------------------
 
 --
@@ -450,28 +464,37 @@ CREATE TABLE `nguoidung` (
   `hoten` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `manhomquyen` int(11) NOT NULL,
+  `ngaysinh `DATE NULL,
+  `gioitinh` ENUM('Nam', 'Nữ') NOT NULL,
+  `diachi` VARCHAR(255) NOT NULL,
+  `sdt` VARCHAR(50) NOT NULL,
+  `machucvu` INT(11) NOT NULL,
+  `tenchucvu` VARCHAR(100) NOT NULL,
+  `ngayvaolam` DATE NULL,
+  `songayphep` INT NOT NULL DEFAULT 12,
+  `luongcoban` INT NOT NULL,
   `trangthai` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
 -- Dumping data for table `nguoidung`
 --
+INSERT INTO nguoidung (taikhoan, matkhau, hoten, email, manhomquyen, ngaysinh, gioitinh, diachi, sdt, machucvu, ngayvaolam, songayphep, luongcoban, trangthai, tenchucvu)
+VALUES
+('baoduy', '$2a$12$PzpNeXoGH.MPBTCj5CoODekfzNz2ji2fb58NAhzgTeT5KIimwPgkm', 'Nguyễn Lê Bảo Duy', 'baoduy@gmail.com', 2, '2003-04-08', 'Nam', '123 Bình Dương', '0935658568', 1, '2022-09-10', 12, 12000000, 1, 'Quản lý kho'),
+('haonhien', '$2a$12$8ZKIYfNbm61PsTv3vnMFiO82bn7I4KuyMpCcTdSQWWQiFaijVA4Z6', 'Âu Hạo Nhiên', 'nhienau@gmail.com', 1, '2003-09-02', 'Nam', 'Sài Gòn', '0912848668', 2, '2022-10-09', 12, 13000000, 1, 'Quản lý nhân sự'),
+('hoainam', '$2a$12$s6pNzMuvZvnhxzlg4tcWiuMgelOHjzfX4JLC5.QCCBuJjm5kO8p7e', 'Thân Trọng Hoài Nam', 'hoainam@gmail.com', 2, '2003-10-01', 'Nam', 'Sài Gòn', '032845459', 5, '2022-11-07', 12, 9000000, 1, 'Nhân viên xuất kho'),
+('ngoctram', '$2a$12$IRl.BXJrRIt2J5rux9V4s.ZoSxsQLpaITPSKTYTjFicLCAP1RR0ue', 'Võ Hồ Ngọc Trâm', 'ngoctram@gmail.com', 2, '2003-05-24', 'Nữ', '251A', '0328547451', 1, '2022-10-15', 12, 12000000, 1, 'Quản lý kho'),
+('nvnhap', '$2a$12$eVl09v71cYD5PB4C7eDoHu7phOu5FwVOsfu2h2bNXq9Z9qGjadtTC', 'Nguyễn Anh Duy', 'nvnhap@gmail.com', 3, '2003-05-15', 'Nam', 'TPHCM', '0902875412', 4, '2023-05-18', 12, 9000000, 1, 'Nhân viên nhập kho'),
+('nvxuat', '$2a$12$0pgPE.PDGFfdY7.qiCXk2eMmNUwSXQpvgtqepOiufLf5c5eGxh1HS', 'Dương Tiến Đức', 'nvxuat@gmail.com', 4, '2002-12-05', 'Nam', 'TPHCM', '0903848514', 5, '2023-04-03', 12, 9000000, 1, 'Nhân viên xuất kho'),
+('testuser1', '$2a$12$AjXYGmuTP4ybCDRMm4.XPOR/3uRKdifqvwFBWAFulihyrI7DqdRzK', 'Lâm Nhã Vy', 'test@gmail.com', 3, '2002-07-08', 'Nữ', 'Hà Nội', '0902485138', 4, '2023-01-01', 12, 9000000, 1, 'Nhân viên nhập kho'),
+('testuser2', '$2a$12$8xi0pseEda5ofRH70nH2DedjWtdjufzoo7EdmNpKWeBaHCxBL51MO', 'Kim Quang Đông', 'testuser2@gmail.com', 5, '2004-08-03', 'Nam', 'Quận 6', '0328757288', 4, '2024-04-16', 12, 9000000, 1, 'Nhân viên nhập kho'),
+('testuser3', '$2a$12$3QfUiAHfBXV4uBpdv6u9AuXHz4w18ab/Uw02Dj7fBRmJDEUt1JVQS', 'Trần Đức Duy', 'testuser3@gmail.com', 4, '2004-02-02', 'Nam', 'Quận 12', '0903857558', 5, '2024-02-10', 12, 9000000, 1, 'Nhân viên xuất kho'),
+('thienan', '$2a$12$BQ3I/AQ4CrxTWEl.qscdken6AOUxYgXt0jRVSV0vREsjhGRUpkIOS', 'Nguyễn Thiên Ân', 'thienan@gmail.com', 2, '2003-03-09', 'Nam', 'TPHCM', '0902516969', 5, '2023-07-07', 12, 9000000, 1, 'Nhân viên xuất kho'),
+('thuyduyen', '$2a$12$Zz/ScTqeWvuBorhHYF1XpOKD8g0XhFHX81AGEFbMdIlUJYVFyic4u', 'Nguyễn Thuỳ Duyên', 'thuyduyen@gmail.com', 2, '2003-09-22', 'Nữ', 'Phú Nhuận, TPHCM', '0979582344', 3, '2023-05-03', 12, 15000000, 1, 'Quản lý kinh doanh'),
+('trongtien', '$2a$12$2coofFU9uiT.eJd2mMi1yeCA.z.HFzUWqa81N5nZECa57RrAj8VvC', 'Hoàng Trọng Tiến', 'trongtien@gmail.com', 7, 'Nam', '2003-02-15', 'TPHCM', '0978494517', 3, '2023-02-04', 12, 15000000, 1, 'Quản lý kinh doanh'),
+('trunganh', '$2a$12$hGpO.9TAkYJBVlTJ0LTdvu4ykf.NAL.jHjSDQwKUqN1qD4b8xcNOK', 'Nguyễn Trung Anh', 'trunganh@gmail.com', 2, 'Nam', '2003-06-12', 'TPHCM', '0325695936', 4, '2024-01-06', 12, 9000000, 1, 'Nhân viên nhập kho'),
+('trungkien', '$2a$12$YYt6MJDhFmYOVrmRj/B1ueA0WhxTM.Lr1cRA0VAoc8DEgPpuFl0TS', 'Bùi Nguyễn Trung Kiên', 'trungkien@gmail.com', 6, 'Nam', '2002-01-01', 'TPHCM', '0925248873', 2, '2022-04-12', 12, 13000000, 1, 'Quản lý nhân sự');
 
-INSERT INTO `nguoidung` (`taikhoan`, `matkhau`, `hoten`, `email`, `manhomquyen`, `trangthai`) VALUES
-('baoduy', '$2a$12$PzpNeXoGH.MPBTCj5CoODekfzNz2ji2fb58NAhzgTeT5KIimwPgkm', 'Nguyễn Lê Bảo Duy', 'baoduy@gmail.com', 2, 1),
-('haonhien', '$2a$12$8ZKIYfNbm61PsTv3vnMFiO82bn7I4KuyMpCcTdSQWWQiFaijVA4Z6', 'Âu Hạo Nhiên', 'nhienau@gmail.com', 1, 1),
-('hoainam', '$2a$12$s6pNzMuvZvnhxzlg4tcWiuMgelOHjzfX4JLC5.QCCBuJjm5kO8p7e', 'Thân Trọng Hoài Nam', 'hoainam@gmail.com', 2, 1),
-('ngoctram', '$2a$12$IRl.BXJrRIt2J5rux9V4s.ZoSxsQLpaITPSKTYTjFicLCAP1RR0ue', 'Võ Hồ Ngọc Trâm', 'ngoctram@gmail.com', 2, 1),
-('nvnhap', '$2a$12$eVl09v71cYD5PB4C7eDoHu7phOu5FwVOsfu2h2bNXq9Z9qGjadtTC', 'Nguyễn Anh Duy', 'nvnhap@gmail.com', 3, 1),
-('nvxuat', '$2a$12$0pgPE.PDGFfdY7.qiCXk2eMmNUwSXQpvgtqepOiufLf5c5eGxh1HS', 'Dương Tiến Ðức', 'nvxuat@gmail.com', 4, 1),
-('testuser1', '$2a$12$AjXYGmuTP4ybCDRMm4.XPOR/3uRKdifqvwFBWAFulihyrI7DqdRzK', 'Ngô Lâm Vũ', 'test@gmail.com', 3, 0),
-('testuser2', '$2a$12$8xi0pseEda5ofRH70nH2DedjWtdjufzoo7EdmNpKWeBaHCxBL51MO', 'Kim Quang Đông', 'testuser2@gmail.com', 5, 1),
-('testuser3', '$2a$12$3QfUiAHfBXV4uBpdv6u9AuXHz4w18ab/Uw02Dj7fBRmJDEUt1JVQS', 'Trần Đức Duy', 'testuser3@gmail.com', 4, 1),
-('thienan', '$2a$12$BQ3I/AQ4CrxTWEl.qscdken6AOUxYgXt0jRVSV0vREsjhGRUpkIOS', 'Nguyễn Thiên Ân', 'thienan@gmail.com', 2, 1),
-('thuyduyen', '$2a$12$Zz/ScTqeWvuBorhHYF1XpOKD8g0XhFHX81AGEFbMdIlUJYVFyic4u', 'Nguyễn Thuỳ Duyên', 'thuyduyen@gmail.com', 2, 1),
-('trunganh', '$2a$12$hGpO.9TAkYJBVlTJ0LTdvu4ykf.NAL.jHjSDQwKUqN1qD4b8xcNOK', 'Nguyễn Trung Anh', 'trunganh@gmail.com', 2, 1),
-('trongtien', '$2a$12$2coofFU9uiT.eJd2mMi1yeCA.z.HFzUWqa81N5nZECa57RrAj8VvC', 'Hoàng Trọng Tiến', 'trongtien@gmail.com', 7, 1),
-('trungkien', '$2a$12$YYt6MJDhFmYOVrmRj/B1ueA0WhxTM.Lr1cRA0VAoc8DEgPpuFl0TS', 'Bùi Nguyễn Trung Kiên', 'trungkien@gmail.com', 6, 1);
+
 -- --------------------------------------------------------
 --
 -- Table structure for table `nhacungcap`
@@ -488,7 +511,6 @@ CREATE TABLE `nhacungcap` (
 --
 -- Dumping data for table `nhacungcap`
 --
-
 INSERT INTO `nhacungcap` (`manhacungcap`, `tennhacungcap`, `sdt`, `diachi`, `trangthai`) VALUES
 (1, 'Công Ty TNHH Điều Khiển Tự Động An Phát', '02835109735', '86/21 Phan Tây Hồ, P. 7, Q. Phú Nhuận TP. Hồ Chí Minh', 1),
 (2, 'Công Ty TNHH Thương Mại Dịch Vụ Hoàng Cố Đô', '02838115345', '622/16/5 Cộng Hòa, Phường 13, Quận Tân Bình, TP HCM', 1),
@@ -524,7 +546,7 @@ INSERT INTO `nhomquyen` (`manhomquyen`, `tennhomquyen`, `douutien`, `trangthai`)
 (5, 'test', 0, 0),
 (6, 'Quản lý nhân sự', 1, 1),
 (7, 'Quản lý kinh doanh', 1, 1);
-
+select * from nhomquyen;
 -- --------------------------------------------------------
 
 --
@@ -701,39 +723,6 @@ INSERT INTO `trangthaiphieunhap` (`matrangthai`, `tentrangthai`) VALUES
 -- Indexes for dumped tables
 --
 
--- --------------------------------------------------------
-
---
--- Table structure for table `nhanvien`
---
-
-CREATE TABLE `nhanvien` (
-  `manv` int(11) NOT NULL,
-  `hoten` varchar(100) NOT NULL,
-  `ngaysinh` date NOT NULL,
-  `gioitinh` enum('Nam','Nữ') NOT NULL,
-  `diachi` varchar(255) NOT NULL,
-  `sdt` varchar(15) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `machucvu` int(11) NOT NULL,
-  `ngayvaolam` date NOT NULL,
-  `songayphep` int DEFAULT 12,
-  `luongcoban` INT NOT NULL,
-  `trangthai` enum('Đang làm','Nghỉ việc') DEFAULT 'Đang làm'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-ALTER TABLE `nhanvien`
-ADD COLUMN `taikhoan` VARCHAR(255);
---
--- Dumping data for table `nhanvien`
---
-
-
---
--- Indexes for dumped tables
---
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `chucvu`
 --
@@ -776,11 +765,17 @@ CREATE TABLE `lichsuchucvu` (
   `ngaythaydoi` date NOT NULL,
   `luong`int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ALTER TABLE lichsuchucvu CHANGE luong luongcoban INT NOT NULL;
+SELECT 
+  nv.hoten
+FROM lichsuchucvu AS ls
+JOIN nhanvien AS nv ON ls.manv = nv.manv;
 
 
 --
--- Dumping data for table `trangthaiphieunhap`
+-- Dumping data for table `lichsuchucvu`
 --
+
 
 
 
@@ -808,24 +803,12 @@ CREATE TABLE `bangluong` (
 -- Dumping data for table `bangluong`
 --
 
-INSERT INTO `bangluong` (`matrangthai`, `tentrangthai`) VALUES
-(1, 'pending'),
-(2, 'cancelled'),
-(3, 'approved'),
-(4, 'delivered');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `chamcong`
 --
-
-CREATE TABLE chamcong (
-   `machamcong` INT(11) NOT NULL,
-   `manv` int(11) NOT NULL,
-   `ngaylam` date NOT NULL,
-   `trangthai` enum('Có mặt', 'Vắng mặt') NOT NULL DEFAULT 'Có mặt'
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -946,6 +929,10 @@ ALTER TABLE `loaisanpham`
 ALTER TABLE `nguoidung`
   ADD PRIMARY KEY (`taikhoan`),
   ADD KEY `FK_NGUOIDUNG_NHOMQUYEN` (`manhomquyen`);
+ALTER TABLE `nguoidung`
+	ADD KEY `FK_NGUOIDUNG_CHUCVU` (`machucvu`);
+
+  
 
 --
 -- Indexes for table `nhacungcap`
@@ -996,6 +983,9 @@ ALTER TABLE `trangthaiphieunhap`
 ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`manv`),
   ADD KEY `FK_NHANVIEN_CHUCVU` (`machucvu`);
+ALTER TABLE `nhanvien`
+	ADD KEY `FK_NHANVIEN_NGUOIDUNG` (`taikhoan`);
+  
 
 --
 -- Indexes for table `chucvu`
@@ -1054,6 +1044,12 @@ ALTER TABLE `thongkeluong`
 --
 ALTER TABLE `kho`
   MODIFY `makho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `nhanvien`
+--
+ALTER TABLE `nhanvien`
+  MODIFY `manv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `loaisanpham`
@@ -1142,6 +1138,8 @@ ALTER TABLE `chitietquyen`
 --
 ALTER TABLE `nguoidung`
   ADD CONSTRAINT `FK_NGUOIDUNG_NHOMQUYEN` FOREIGN KEY (`manhomquyen`) REFERENCES `nhomquyen` (`manhomquyen`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `nguoidung`
+  ADD CONSTRAINT `FK_NGUOIDUNG_CHUCVU` FOREIGN KEY (`machucvu`) REFERENCES `chucvu` (`machucvu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `phieunhap`
@@ -1170,7 +1168,8 @@ ALTER TABLE `sanpham`
 --
 ALTER TABLE `nhanvien`
   ADD CONSTRAINT `FK_NHANVIEN_CHUCVU` FOREIGN KEY (`machucvu`) REFERENCES `chucvu` (`machucvu`) ON DELETE CASCADE ON UPDATE CASCADE;
-
+ALTER TABLE `nhanvien`
+  ADD CONSTRAINT `FK_NHANVIEN_NGUOIDUNG` FOREIGN KEY (`taikhoan`) REFERENCES `nguoidung` (`taikhoan`) ON DELETE CASCADE ON UPDATE CASCADE;
  
 --
 -- Constraints for table `lichsuchucvu`
