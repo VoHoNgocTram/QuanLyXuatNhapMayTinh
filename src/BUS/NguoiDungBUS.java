@@ -256,4 +256,10 @@ public class NguoiDungBUS {
         }
         return result;
     }
+    
+    public String updateCaNhan(NguoiDungDTO user){
+        if(ndDAO.updateInfo(user))
+           return "Cập nhật thành công!";
+        return "Cập nhật thất bại!";
+    }
 }
