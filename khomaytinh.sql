@@ -760,21 +760,25 @@ INSERT INTO `chucvu` (`machucvu`, `tenchucvu`, `luongcoban`) VALUES
 
 CREATE TABLE `lichsuchucvu` (
   `mals` int(11) NOT NULL,
-  `manv` int(11) NOT NULL,
+  `taikhoan` VARCHAR(255) NOT NULL,
+  `hoten` VARCHAR(255) NOT NULL,
   `machucvu` int(11) NOT NULL,
+  `tenchucvu` varchar(100) NOT NULL,
   `ngaythaydoi` date NOT NULL,
-  `luong`int NOT NULL
+  `luongcoban` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-ALTER TABLE lichsuchucvu CHANGE luong luongcoban INT NOT NULL;
-SELECT 
-  nv.hoten
-FROM lichsuchucvu AS ls
-JOIN nhanvien AS nv ON ls.manv = nv.manv;
 
 
 --
 -- Dumping data for table `lichsuchucvu`
 --
+INSERT INTO `lichsuchucvu` (`mals`, `taikhoan`, `hoten`, `machucvu`, `tenchucvu`, `ngaythaydoi`, `luongcoban`) VALUES
+(1, 'baoduy', 'Nguyễn Lê Bảo Duy', 1, 'Quản lý kho', '2023-01-01', 12000000),
+(2, 'trungkien', 'Bùi Nguyễn Trung Kiên', 2, 'Quản lý nhân sự', '2023-02-01', 13000000),
+(3, 'hoainam', 'Thân Trọng Hoài Nam', 5, 'Nhân viên xuất kho', '2023-03-01', 9000000),
+(4, 'ngoctram', 'Võ Hồ Ngọc Trâm', 1, 'Quản lý kho', '2023-04-01', 12000000),
+(5, 'nvnhap', 'Nguyễn Anh Duy', 4, 'Nhân viên nhập kho', '2023-05-01', 9000000);
+
 
 
 
@@ -787,7 +791,8 @@ JOIN nhanvien AS nv ON ls.manv = nv.manv;
 
 CREATE TABLE `bangluong` (
   `mabl` int(11) NOT NULL,
-  `manv` int(11) NOT NULL,
+  `taikhoan` VARCHAR(255) NOT NULL,
+  `hoten` VARCHAR(255) NOT NULL,
   `thang` int(2) NOT NULL,
   `nam` int(4) NOT NULL,
   `luongcoban` int NOT NULL,
@@ -797,18 +802,19 @@ CREATE TABLE `bangluong` (
   `ngaytinhluong` DATE NOT NULL,
   `songaycong` INT DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
+ALTER TABLE bangluong
+ADD COLUMN hoten VARCHAR(255) NOT NULL AFTER taikhoan;
 
 --
 -- Dumping data for table `bangluong`
 --
+INSERT INTO `bangluong` (`mabl`, `taikhoan`, `hoten`, `thang`, `nam`, `luongcoban`, `thuong`, `truluong`, `tongluong`, `ngaytinhluong`, `songaycong`) VALUES
+(1, 'baoduy', 'Nguyễn Lê Bảo Duy', 1, 2023, 12000000, 1000000, 13000000, 14000000, '2023-01-01', 30),
+(2, 'trungkien', 'Bùi Nguyễn Trung Kiên', 2, 2023, 13000000, 1200000, 14200000, 15000000, '2023-02-01', 28),
+(3, 'hoainam', 'Thân Trọng Hoài Nam', 3, 2023, 9000000, 500000, 9500000, 10000000, '2023-03-01', 30),
+(4, 'ngoctram', 'Võ Hồ Ngọc Trâm', 4, 2023, 12000000, 700000, 12700000, 13500000, '2023-04-01', 30),
+(5, 'nvnhap', 'Nguyễn Anh Duy', 5, 2023, 9000000, 300000, 9300000, 10000000, '2023-05-01', 30);
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `chamcong`
---
 
 -- --------------------------------------------------------
 
@@ -818,7 +824,8 @@ CREATE TABLE `bangluong` (
 
 CREATE TABLE `donnghi` (
   `madn` int(11) NOT NULL,
-  `manv` int(11) NOT NULL,
+  `taikhoan` VARCHAR(255) NOT NULL,
+  `hoten` VARCHAR(255) NOT NULL,
   `loai_nghi`enum('Nghỉ phép', 'Nghỉ ốm', 'Thai sản', 'Nghỉ việc') NOT NULL,
   `ngaynopdon` date NOT NULL,
   `ngaybatdau` date NOT NULL,
@@ -830,12 +837,18 @@ CREATE TABLE `donnghi` (
 --
 -- Dumping data for table `donnghi`
 --
+INSERT INTO `donnghi` (`madn`, `taikhoan`, `hoten`, `loai_nghi`, `ngaynopdon`, `ngaybatdau`, `ngayketthuc`, `trangthai`, `ghichu`) VALUES
+(1, 'baoduy', 'Nguyễn Lê Bảo Duy', 'Nghỉ phép', '2023-05-01', '2023-05-10', '2023-05-12', 1, 'Nghỉ phép 2 ngày'),
+(2, 'trungkien', 'Bùi Nguyễn Trung Kiên', 'Nghỉ ốm', '2023-06-01', '2023-06-05', '2023-06-07', 2, 'Nghỉ ốm 2 ngày'),
+(3, 'hoainam', 'Thân Trọng Hoài Nam', 'Thai sản', '2023-07-01', '2023-07-10', '2023-10-10', 3, 'Nghỉ thai sản 3 tháng'),
+(4, 'ngoctram', 'Võ Hồ Ngọc Trâm', 'Nghỉ phép', '2023-08-01', '2023-08-10', '2023-08-11', 1, 'Nghỉ phép 1 ngày'),
+(5, 'nvnhap', 'Nguyễn Anh Duy', 'Nghỉ phép', '2023-09-01', '2023-09-05', '2023-09-07', 2, 'Nghỉ phép 3 ngày');
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `donnghi`
+-- Table structure for table `trangthaiduyetdon`
 --
 
 CREATE TABLE `trangthaiduyetdon` (
@@ -871,7 +884,13 @@ CREATE TABLE `thongkeluong` (
 --
 -- Dumping data for table `thongkeluong`
 --
-
+-- Dữ liệu cho bảng `thongkeluong`
+INSERT INTO `thongkeluong` (`mathongkeluong`, `thang`, `nam`, `tongnhanvien`, `tongluong`, `tongthuong`) VALUES
+(1, 1, 2023, 5, 65000000, 8000000),
+(2, 2, 2023, 5, 67500000, 9000000),
+(3, 3, 2023, 5, 62000000, 5000000),
+(4, 4, 2023, 5, 61000000, 7000000),
+(5, 5, 2023, 5, 65000000, 6000000);
 
 
 
@@ -980,12 +999,7 @@ ALTER TABLE `trangthaiphieunhap`
 --
 -- Indexes for table `nhanvien`
 --
-ALTER TABLE `nhanvien`
-  ADD PRIMARY KEY (`manv`),
-  ADD KEY `FK_NHANVIEN_CHUCVU` (`machucvu`);
-ALTER TABLE `nhanvien`
-	ADD KEY `FK_NHANVIEN_NGUOIDUNG` (`taikhoan`);
-  
+
 
 --
 -- Indexes for table `chucvu`
@@ -998,7 +1012,7 @@ ALTER TABLE `chucvu`
 --
 ALTER TABLE `lichsuchucvu`
   ADD PRIMARY KEY (`mals`),
-  ADD KEY `FK_LICHSUCHUCVU_NHANVIEN` (`manv`),
+  ADD KEY `FK_LICHSUCHUCVU_NGUOIDUNG` (`taikhoan`),
   ADD KEY `FK_LICHSUCHUCVU_CHUCVU` (`machucvu`);
 
 --
@@ -1006,21 +1020,14 @@ ALTER TABLE `lichsuchucvu`
 --
 ALTER TABLE `bangluong`
   ADD PRIMARY KEY (`mabl`),
-  ADD KEY `FK_BANGLUONG_NHANVIEN` (`manv`);
-
---
--- Indexes for table `chamcong`
---
-ALTER TABLE `chamcong`
-  ADD PRIMARY KEY (`machamcong`),
-  ADD KEY `FK_CHAMCONG_NHANVIEN` (`manv`);
+  ADD KEY `FK_BANGLUONG_NGUOIDUNG` (`taikhoan`);
 
 --
 -- Indexes for table `donnghi`
 --
 ALTER TABLE `donnghi`
   ADD PRIMARY KEY (`madn`),
-  ADD KEY `FK_DONNGHI_NHANVIEN` (`manv`),
+  ADD KEY `FK_DONNGHI_NGUOIDUNG` (`taikhoan`),
   ADD KEY `FK_DONNGHI_TRANGTHAIDUYETDON` (`trangthai`);
 
 --
@@ -1164,38 +1171,25 @@ ALTER TABLE `sanpham`
   ADD CONSTRAINT `FK_SANPHAM_LOAISANPHAM` FOREIGN KEY (`maloaisanpham`) REFERENCES `loaisanpham` (`maloaisanpham`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `nhanvien`
---
-ALTER TABLE `nhanvien`
-  ADD CONSTRAINT `FK_NHANVIEN_CHUCVU` FOREIGN KEY (`machucvu`) REFERENCES `chucvu` (`machucvu`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE `nhanvien`
-  ADD CONSTRAINT `FK_NHANVIEN_NGUOIDUNG` FOREIGN KEY (`taikhoan`) REFERENCES `nguoidung` (`taikhoan`) ON DELETE CASCADE ON UPDATE CASCADE;
- 
---
 -- Constraints for table `lichsuchucvu`
 --
 ALTER TABLE `lichsuchucvu`
-  ADD CONSTRAINT `FK_LICHSUCHUCVU_NHANVIEN` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_LICHSUCHUCVU_NGUOIDUNG` FOREIGN KEY (`taikhoan`) REFERENCES `nguoidung` (`taikhoan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_LICHSUCHUCVU_CHUCVU` FOREIGN KEY (`machucvu`) REFERENCES `chucvu` (`machucvu`) ON DELETE CASCADE ON UPDATE CASCADE;
   
 --
 -- Constraints for table `bangluong`
 --
 ALTER TABLE `bangluong`
-  ADD CONSTRAINT `FK_BANGLUONG_NHANVIEN` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_BANGLUONG_NGUOIDUNG` FOREIGN KEY (`taikhoan`) REFERENCES `nguoidung` (`taikhoan`) ON DELETE CASCADE ON UPDATE CASCADE;
   
 --
 -- Constraints for table `donnghi`
 --
 ALTER TABLE `donnghi`
-  ADD CONSTRAINT `FK_DONNGHI_NHANVIEN` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_DONNGHI_NGUOIDUNG` FOREIGN KEY (`taikhoan`) REFERENCES `nguoidung` (`taikhoan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_DONNGHI_TRANGTHAIDUYETDON` FOREIGN KEY (`trangthai`) REFERENCES `trangthaiduyetdon` (`matrangthai`) ON DELETE CASCADE ON UPDATE CASCADE;
   
---
--- Constraints for table `chamcong`
---
-ALTER TABLE `chamcong`
-  ADD CONSTRAINT `FK_CHAMCONG_NHANVIEN` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
