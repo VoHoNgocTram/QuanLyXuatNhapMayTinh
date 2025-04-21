@@ -27,7 +27,19 @@ public class NhanVienForm extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
         initComponents();
+        
+         // Authorization
+        javax.swing.JButton[] buttons = {btnAdd, btnDelete, btnEdit};
+        disableAllButtons(buttons);
         authorizeAction(user);
+        
+        
+    }
+    
+    private void disableAllButtons(javax.swing.JButton[] buttons) {
+        for (javax.swing.JButton btn : buttons) {
+            btn.setEnabled(false);
+        }
     }
     
     private void authorizeAction(NguoiDungDTO user) {
