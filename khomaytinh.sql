@@ -800,20 +800,20 @@ CREATE TABLE `bangluong` (
   `truluong` int DEFAULT 0,
   `tongluong` int NOT NULL,
   `ngaytinhluong` DATE NOT NULL,
-  `songaycong` INT DEFAULT 0
+  `songaycong` INT DEFAULT 0,
+  `trangthai` INT(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-ALTER TABLE bangluong
-ADD COLUMN hoten VARCHAR(255) NOT NULL AFTER taikhoan;
+
 
 --
 -- Dumping data for table `bangluong`
 --
-INSERT INTO `bangluong` (`mabl`, `taikhoan`, `hoten`, `thang`, `nam`, `luongcoban`, `thuong`, `truluong`, `tongluong`, `ngaytinhluong`, `songaycong`) VALUES
-(1, 'baoduy', 'Nguyễn Lê Bảo Duy', 1, 2023, 12000000, 1000000, 13000000, 14000000, '2023-01-01', 30),
-(2, 'trungkien', 'Bùi Nguyễn Trung Kiên', 2, 2023, 13000000, 1200000, 14200000, 15000000, '2023-02-01', 28),
-(3, 'hoainam', 'Thân Trọng Hoài Nam', 3, 2023, 9000000, 500000, 9500000, 10000000, '2023-03-01', 30),
-(4, 'ngoctram', 'Võ Hồ Ngọc Trâm', 4, 2023, 12000000, 700000, 12700000, 13500000, '2023-04-01', 30),
-(5, 'nvnhap', 'Nguyễn Anh Duy', 5, 2023, 9000000, 300000, 9300000, 10000000, '2023-05-01', 30);
+INSERT INTO `bangluong` (`mabl`, `taikhoan`, `hoten`, `thang`, `nam`, `luongcoban`, `thuong`, `truluong`, `tongluong`, `ngaytinhluong`, `songaycong`, `trangthai`) VALUES
+(1, 'baoduy', 'Nguyễn Lê Bảo Duy', 1, 2023, 12000000, 1000000, 13000000, 14000000, '2023-01-01', 30, 1),
+(2, 'trungkien', 'Bùi Nguyễn Trung Kiên', 2, 2023, 13000000, 1200000, 14200000, 15000000, '2023-02-01', 28, 1),
+(3, 'hoainam', 'Thân Trọng Hoài Nam', 3, 2023, 9000000, 500000, 9500000, 10000000, '2023-03-01', 30, 1),
+(4, 'ngoctram', 'Võ Hồ Ngọc Trâm', 4, 2023, 12000000, 700000, 12700000, 13500000, '2023-04-01', 30, 1),
+(5, 'nvnhap', 'Nguyễn Anh Duy', 5, 2023, 9000000, 300000, 9300000, 10000000, '2023-05-01', 30, 1);
 
 
 -- --------------------------------------------------------
