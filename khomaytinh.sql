@@ -376,6 +376,10 @@ INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) V
 (6, 'nhanvien', 'create', '[]'),
 (6, 'nhanvien', 'view', '[]'),
 (6, 'nhanvien', 'delete', '[])');
+INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) VALUES
+(2, 'donnghi', 'create', '[]'),
+(2, 'donnghi', 'view', '[]'),
+(2, 'donnghi', 'update', '[])');
 --
 -- Table structure for table `chucnang`
 --
