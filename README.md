@@ -1,10 +1,11 @@
 # Quản Lý Xuất Nhập Máy Tính - Hệ thống thông tin doanh nghiệp
 
 # Đóng góp
-Nhóm 16 : Nguyễn Lê Bảo Duy - 3121410120 
-          Võ Hồ Ngọc Trâm - 3121410518
-          Hoàng Trọng Tiến - 3121410496
-          Bùi Nguyễn Trung Kiên - 3120560048
+Nhóm 16 
+1. Nguyễn Lê Bảo Duy - 3121410120 
+2. Võ Hồ Ngọc Trâm - 3121410518
+3. Hoàng Trọng Tiến - 3121410496
+4. Bùi Nguyễn Trung Kiên - 3120560048
           
 # Tổng quan
 Quản Lý Xuất Nhập Máy Tính là một ứng dụng desktop được phát triển bằng Java, nhằm hỗ trợ quản lý hoạt động nhập và xuất máy tính trong doanh nghiệp. Ứng dụng cung cấp giao diện đồ họa thân thiện với người dùng, được xây dựng bằng Java Swing, và tích hợp cơ sở dữ liệu MySQL để lưu trữ, quản lý dữ liệu về sản phẩm, nhân viên, hóa đơn, kho, tài khoản, và các thống kê liên quan.
