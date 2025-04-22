@@ -264,6 +264,11 @@ INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) V
 (1, 'taikhoan', 'delete', '[]'),
 (1, 'taikhoan', 'update', '[]'),
 (1, 'taikhoan', 'view', '[]'),
+(2, 'canhan', 'update', '[]'),
+(2, 'canhan', 'view', '[]'),
+(2, 'donnghi', 'create', '[]'),
+(2, 'donnghi', 'view', '[]'),
+(2, 'donnghi', 'update', '[])'),
 (2, 'kho', 'create', '[]'),
 (2, 'kho', 'delete', '[]'),
 (2, 'kho', 'update', '[]'),
@@ -297,12 +302,51 @@ INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) V
 (3, 'phieunhap', 'view', '[]'),
 (3, 'sanpham', 'view', '[]'),
 (3, 'tonkho', 'view', '[\"gianhap\"]'),
+(3, 'canhan', 'update', '[]'),
+(3, 'canhan', 'view', '[]'),
+(3, 'donnghi', 'create', '[]'),
+(3, 'donnghi', 'update', '[]'),
+(3, 'donnghi', 'view', '[]'),
+(3, 'bangluong', 'view', '[]'),
+(3, 'taikhoan', 'update', '[]'),
+(3, 'taikhoan', 'view', '[]'),
 (4, 'kho', 'view', '[]'),
 (4, 'loaisanpham', 'view', '[]'),
 (4, 'phieuxuat', 'create', '[]'),
 (4, 'phieuxuat', 'view', '[]'),
 (4, 'sanpham', 'view', '[]'),
 (4, 'tonkho', 'view', '[\"gianhap\"]'),
+(4, 'canhan', 'update', '[]'),
+(4, 'canhan', 'view', '[]'),
+(4, 'taikhoan', 'update', '[]'),
+(4, 'taikhoan', 'view', '[]'),
+(4, 'donnghi', 'create', '[]'),
+(4, 'donnghi', 'update', '[]'),
+(4, 'donnghi', 'view', '[]'),
+(4, 'bangluong', 'view', '[]'),
+(5, 'canhan', 'update', '[]'),
+(5, 'canhan', 'view', '[]'),
+(6, 'taikhoan', 'create', '[]'),
+(6, 'taikhoan', 'delete', '[]'),
+(6, 'taikhoan', 'view', '[]'),
+(6, 'bangluong', 'create', '[]'),
+(6, 'bangluong', 'update', '[]'),
+(6, 'bangluong', 'view', '[]'),
+(6, 'chucvu', 'create', '[]'),
+(6, 'chucvu', 'update', '[]'),
+(6, 'chucvu', 'view', '[]'),
+(6, 'canhan', 'update', '[]'),
+(6, 'canhan', 'view', '[]'),
+(6, 'nhanvien', 'create', '[]'),
+(6, 'nhanvien', 'view', '[]'),
+(6, 'nhanvien', 'delete', '[])'),
+(6, 'donnghi', 'create', '[]'),
+(6, 'donnghi', 'delete', '[]'),
+(6, 'donnghi', 'update', '[]'),
+(6, 'donnghi', 'view', '[]'),
+(6, 'thongkeluong', 'create', '[]'),
+(6, 'thongkeluong', 'update', '[]'),
+(6, 'thongkeluong', 'view', '[]'),
 (7, 'kho', 'create', '[]'),
 (7, 'kho', 'delete', '[]'),
 (7, 'kho', 'update', '[]'),
@@ -329,57 +373,10 @@ INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) V
 (7, 'thongke', 'view', '[]'),
 (7, 'tonkho', 'update', '[]'),
 (7, 'tonkho', 'view', '[]'),
-(3, 'donnghi', 'create', '[]'),
-(3, 'donnghi', 'update', '[]'),
-(3, 'donnghi', 'view', '[]'),
-(3, 'bangluong', 'view', '[]'),
-(3, 'taikhoan', 'update', '[]'),
-(3, 'taikhoan', 'view', '[]'),
-(4, 'taikhoan', 'update', '[]'),
-(4, 'taikhoan', 'view', '[]'),
-(4, 'donnghi', 'create', '[]'),
-(4, 'donnghi', 'update', '[]'),
-(4, 'donnghi', 'view', '[]'),
-(4, 'bangluong', 'view', '[]'),
-(6, 'taikhoan', 'create', '[]'),
-(6, 'taikhoan', 'delete', '[]'),
-(6, 'taikhoan', 'view', '[]'),
-(6, 'bangluong', 'create', '[]'),
-(6, 'bangluong', 'update', '[]'),
-(6, 'bangluong', 'view', '[]'),
-(6, 'chucvu', 'create', '[]'),
-(6, 'chucvu', 'update', '[]'),
-(6, 'chucvu', 'view', '[]'),
-(6, 'donnghi', 'create', '[]'),
-(6, 'donnghi', 'delete', '[]'),
-(6, 'donnghi', 'update', '[]'),
-(6, 'donnghi', 'view', '[]'),
-(6, 'thongkeluong', 'create', '[]'),
-(6, 'thongkeluong', 'update', '[]'),
-(6, 'thongkeluong', 'view', '[]');
--- --------------------------------------------------------
-INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) VALUES
-(2, 'canhan', 'update', '[]'),
-(2, 'canhan', 'view', '[]'),
-(3, 'canhan', 'update', '[]'),
-(3, 'canhan', 'view', '[]'),
-(4, 'canhan', 'update', '[]'),
-(4, 'canhan', 'view', '[]'),
-(5, 'canhan', 'update', '[]'),
-(5, 'canhan', 'view', '[]'),
 (7, 'canhan', 'update', '[]'),
 (7, 'canhan', 'view', '[]');
-INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) VALUES
-(6, 'canhan', 'update', '[]'),
-(6, 'canhan', 'view', '[]');
-INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) VALUES
-(6, 'nhanvien', 'create', '[]'),
-(6, 'nhanvien', 'view', '[]'),
-(6, 'nhanvien', 'delete', '[])');
-INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) VALUES
-(2, 'donnghi', 'create', '[]'),
-(2, 'donnghi', 'view', '[]'),
-(2, 'donnghi', 'update', '[])');
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `chucnang`
 --
@@ -408,8 +405,7 @@ INSERT INTO `chucnang` (`machucnang`, `tenchucnang`, `trangthai`) VALUES
 ('bangluong', 'Quản lý bảng lương', 1),
 ('thongkeluong', 'Thống kê lương', 1),
 ('donnghi', 'Quản lý nghỉ phép', 1),
-('chucvu', 'Quản lý chức vụ', 1);
-INSERT INTO `chucnang` (`machucnang`, `tenchucnang`, `trangthai`) VALUES
+('chucvu', 'Quản lý chức vụ', 1),
 ('canhan', 'Quản lý thông tin cá nhân', 1);
 -- --------------------------------------------------------
 
@@ -738,7 +734,8 @@ INSERT INTO `trangthaiphieunhap` (`matrangthai`, `tentrangthai`) VALUES
 CREATE TABLE `chucvu` (
   `machucvu` int(11) NOT NULL,
   `tenchucvu` varchar(100) NOT NULL,
-  `luongcoban` int NOT NULL
+  `luongcoban` int NOT NULL,
+  `trangthai` int NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -746,13 +743,12 @@ CREATE TABLE `chucvu` (
 -- Dumping data for table `chucvu`
 --
 
-INSERT INTO `chucvu` (`machucvu`, `tenchucvu`, `luongcoban`) VALUES
-(1, 'Quản lý kho', 12000000),
-(2, 'Quản lý nhân sự', 13000000),
-(3, 'Quản lý kinh doanh', 15000000),
-(4, 'Nhân viên nhập kho', 9000000),
-(5, 'Nhân viên xuất kho', 9000000);
-
+INSERT INTO `chucvu` (`machucvu`, `tenchucvu`, `luongcoban`, `trangthai`) VALUES
+(1, 'Quản lý kho', 12000000, 1),
+(2, 'Quản lý nhân sự', 13000000, 1),
+(3, 'Quản lý kinh doanh', 15000000, 1),
+(4, 'Nhân viên nhập kho', 9000000, 1),
+(5, 'Nhân viên xuất kho', 9000000, 1);
 
 
 
@@ -773,21 +769,20 @@ CREATE TABLE `lichsuchucvu` (
   `machucvu` int(11) NOT NULL,
   `tenchucvu` varchar(100) NOT NULL,
   `ngaythaydoi` date NOT NULL,
-  `luongcoban` int NOT NULL
+  `luongcoban` int NOT NULL,
+  `trangthai` int NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 --
 -- Dumping data for table `lichsuchucvu`
 --
-INSERT INTO `lichsuchucvu` (`mals`, `taikhoan`, `hoten`, `machucvu`, `tenchucvu`, `ngaythaydoi`, `luongcoban`) VALUES
-(1, 'baoduy', 'Nguyễn Lê Bảo Duy', 1, 'Quản lý kho', '2023-01-01', 12000000),
-(2, 'trungkien', 'Bùi Nguyễn Trung Kiên', 2, 'Quản lý nhân sự', '2023-02-01', 13000000),
-(3, 'hoainam', 'Thân Trọng Hoài Nam', 5, 'Nhân viên xuất kho', '2023-03-01', 9000000),
-(4, 'ngoctram', 'Võ Hồ Ngọc Trâm', 1, 'Quản lý kho', '2023-04-01', 12000000),
-(5, 'nvnhap', 'Nguyễn Anh Duy', 4, 'Nhân viên nhập kho', '2023-05-01', 9000000);
-
-
+INSERT INTO `lichsuchucvu` (`mals`, `taikhoan`, `hoten`, `machucvu`, `tenchucvu`, `ngaythaydoi`, `luongcoban`, `trangthai`) VALUES
+(1, 'baoduy', 'Nguyễn Lê Bảo Duy', 1, 'Quản lý kho', '2023-01-01', 12000000, 1),
+(2, 'trungkien', 'Bùi Nguyễn Trung Kiên', 2, 'Quản lý nhân sự', '2023-02-01', 13000000, 1),
+(3, 'hoainam', 'Thân Trọng Hoài Nam', 5, 'Nhân viên xuất kho', '2023-03-01', 9000000, 1),
+(4, 'ngoctram', 'Võ Hồ Ngọc Trâm', 1, 'Quản lý kho', '2023-04-01', 12000000, 1),
+(5, 'nvnhap', 'Nguyễn Anh Duy', 4, 'Nhân viên nhập kho', '2023-05-01', 9000000, 1);
 
 
 
@@ -851,6 +846,8 @@ INSERT INTO `donnghi` (`madn`, `taikhoan`, `hoten`, `loai_nghi`, `ngaynopdon`, `
 (3, 'hoainam', 'Thân Trọng Hoài Nam', 'Thai sản', '2023-07-01', '2023-07-10', '2023-10-10', 3, 'Nghỉ thai sản 3 tháng'),
 (4, 'ngoctram', 'Võ Hồ Ngọc Trâm', 'Nghỉ phép', '2023-08-01', '2023-08-10', '2023-08-11', 1, 'Nghỉ phép 1 ngày'),
 (5, 'nvnhap', 'Nguyễn Anh Duy', 'Nghỉ phép', '2023-09-01', '2023-09-05', '2023-09-07', 2, 'Nghỉ phép 3 ngày');
+INSERT INTO `donnghi` (`taikhoan`, `hoten`, `loai_nghi`, `ngaynopdon`, `ngaybatdau`, `ngayketthuc`, `trangthai`, `ghichu`) VALUES
+('nvnhap', 'Nguyễn Anh Duy', 'Nghỉ phép', '2023-10-01', '2023-10-06', '2023-10-07', 1, 'Nghỉ phép 1 ngày');
 
 
 -- --------------------------------------------------------
@@ -886,19 +883,20 @@ CREATE TABLE `thongkeluong` (
   `nam` INT(4) NOT NULL,
   `tongnhanvien` INT(11) NOT NULL,
   `tongluong` int NOT NULL,
-  `tongthuong` int NOT NULL
+  `tongthuong` int NOT NULL,
+  `trangthai` int NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `thongkeluong`
 --
 -- Dữ liệu cho bảng `thongkeluong`
-INSERT INTO `thongkeluong` (`mathongkeluong`, `thang`, `nam`, `tongnhanvien`, `tongluong`, `tongthuong`) VALUES
-(1, 1, 2023, 5, 65000000, 8000000),
-(2, 2, 2023, 5, 67500000, 9000000),
-(3, 3, 2023, 5, 62000000, 5000000),
-(4, 4, 2023, 5, 61000000, 7000000),
-(5, 5, 2023, 5, 65000000, 6000000);
+INSERT INTO `thongkeluong` (`mathongkeluong`, `thang`, `nam`, `tongnhanvien`, `tongluong`, `tongthuong`, `trangthai`) VALUES
+(1, 1, 2023, 5, 65000000, 8000000, 1),
+(2, 2, 2023, 5, 67500000, 9000000, 1),
+(3, 3, 2023, 5, 62000000, 5000000, 1),
+(4, 4, 2023, 5, 61000000, 7000000, 1),
+(5, 5, 2023, 5, 65000000, 6000000, 1);
 
 
 
@@ -1059,7 +1057,8 @@ ALTER TABLE `thongkeluong`
 --
 ALTER TABLE `kho`
   MODIFY `makho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+ALTER TABLE `donnghi`
+  MODIFY `madn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `nhanvien`
 --
@@ -1114,6 +1113,11 @@ ALTER TABLE `trangthaiphieunhap`
 ALTER TABLE `chucvu`
   MODIFY `machucvu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
+--
+-- AUTO_INCREMENT for table `donnghi`
+--
+ALTER TABLE `donnghi`
+  MODIFY `madn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --
