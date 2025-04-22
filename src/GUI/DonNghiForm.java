@@ -61,7 +61,7 @@ public class DonNghiForm extends javax.swing.JInternalFrame {
         // Get all allowed actions in this functionality
         List<ChiTietQuyenDTO> allowedActions = new ArrayList<>();
         try {
-            allowedActions = ctqBUS.getAllowedActions(user.getMaNhomQuyen(), "nhanvien");
+            allowedActions = ctqBUS.getAllowedActions(user.getMaNhomQuyen(), "donnghi");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(DonNghiForm.this, "Lỗi kết nối cơ sở dữ liệu", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
