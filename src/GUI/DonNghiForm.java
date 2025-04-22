@@ -6,12 +6,17 @@ package GUI;
 
 import BUS.ChiTietQuyenBUS;
 import DTO.ChiTietQuyenDTO;
+import DTO.DonNghiDTO;
 import DTO.NguoiDungDTO;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +28,9 @@ public class DonNghiForm extends javax.swing.JInternalFrame {
     /**
      * Creates new form DonNghiForm
      */
+    private ArrayList<DonNghiDTO> dsDonNghi;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private DefaultTableCellRenderer renderer;
     public DonNghiForm(NguoiDungDTO user) {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
@@ -32,6 +40,15 @@ public class DonNghiForm extends javax.swing.JInternalFrame {
         javax.swing.JButton[] buttons = {btnAdd, btnDelete, btnEdit};
         disableAllButtons(buttons);
         authorizeAction(user);
+        
+        renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+        tblDonNghi.setDefaultRenderer(String.class, renderer);
+        tblDonNghi.getTableHeader().setDefaultRenderer(renderer);
+        tblDonNghi.setDefaultEditor(Object.class, null);
+        // 👉 Gán dữ liệu cho dsDonNghi từ DAO
+        dsDonNghi = DAO.DonNghiDAO.getInstance().getAllDanhSachDonNghi();
+        loadTable(dsDonNghi);
     }
     
     private void disableAllButtons(javax.swing.JButton[] buttons) {
@@ -71,6 +88,86 @@ public class DonNghiForm extends javax.swing.JInternalFrame {
         }
  
     }
+    
+    /*public void loadTable(ArrayList<PhieuNhapDTO> listPhieuNhap)(ArrayList{
+       
+        if(listPhieuNhap != null) {
+            DefaultTableModel model = (DefaultTableModel) tblPhieuNhap.getModel();
+            tblPhieuNhap.setDefaultEditor(Object.class, null);
+            model.setRowCount(0);
+            int stt = 0;
+            for (int i = listPhieuNhap.size() - 1; i >= 0; i--) {
+                PhieuNhapDTO phieuNhap = listPhieuNhap.get(i);
+                String tenKho = khoDAO.getInstance().getWareHouseByID(phieuNhap.getMaKho());
+                
+                String trangThai;
+                switch (phieuNhap.getTrangThai()) {
+                    case 1:
+                        trangThai = "Chờ xác nhận";
+                        break;
+                    case 2:
+                        trangThai = "Đã hủy";
+                        break;
+                    case 3:
+                        trangThai = "Đã xác nhận";
+                        break;
+                    case 4:
+                        trangThai = "Đã giao hàng";
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+                stt ++;
+                Object[] row = {stt , phieuNhap.getMaPhieuNhap(), 
+                    phieuNhap.getThoiGianTao(), tenKho, 
+                    formatter.format( phieuNhap.getTongTien()), 
+                    trangThai};
+                model.addRow(row);
+            }
+            for(int i = 0; i < tblPhieuNhap.getColumnCount(); i++){
+                tblPhieuNhap.getColumnModel().getColumn(i).setCellRenderer(renderer);
+            }
+        }
+        else {
+           return;
+        }
+    }*/
+    
+    public void loadTable(ArrayList<DonNghiDTO> dsDonNghi){
+        if (dsDonNghi != null){
+            DefaultTableModel model = (DefaultTableModel) tblDonNghi.getModel();
+            tblDonNghi.setDefaultEditor(Object.class, null);
+            model.setRowCount(0);
+            for (int i = dsDonNghi.size() - 1; i >= 0; i--){
+                DonNghiDTO donNghi = dsDonNghi.get(i);
+                
+                String trangThai;
+                switch (donNghi.getTrangThai()) {
+                    case 1:
+                        trangThai = "Chờ duyệt";
+                        break;
+                    case 2:
+                        trangThai = "Đã duyệt";
+                        break;
+                    case 3:
+                        trangThai = "Từ chối";
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+                Object[] row = {donNghi.getMaDonNghi(), donNghi.getHoTen(), donNghi.getLoaiNghi(),
+                                sdf.format(donNghi.getNgayNopDon()), sdf.format(donNghi.getNgayBatDau()), sdf.format(donNghi.getNgayKetThuc()),
+                                donNghi.getGhiChu(), trangThai};
+                model.addRow(row);
+            }
+            for(int i = 0; i < tblDonNghi.getColumnCount(); i++){
+                tblDonNghi.getColumnModel().getColumn(i).setCellRenderer(renderer);
+            }
+        }
+        else{
+            return;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,6 +186,8 @@ public class DonNghiForm extends javax.swing.JInternalFrame {
         cbxlLuaChon = new javax.swing.JComboBox<>();
         txtSearchForm = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDonNghi = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -107,6 +206,11 @@ public class DonNghiForm extends javax.swing.JInternalFrame {
         btnAdd.setFocusable(false);
         btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnAdd);
 
         btnDelete.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
@@ -116,6 +220,11 @@ public class DonNghiForm extends javax.swing.JInternalFrame {
         btnDelete.setFocusable(false);
         btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnDelete);
 
         btnEdit.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
@@ -125,6 +234,11 @@ public class DonNghiForm extends javax.swing.JInternalFrame {
         btnEdit.setFocusable(false);
         btnEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnEdit);
 
         jPanel2.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, 90));
@@ -138,34 +252,116 @@ public class DonNghiForm extends javax.swing.JInternalFrame {
         jPanel3.add(cbxlLuaChon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 150, 40));
 
         txtSearchForm.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
+        txtSearchForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchFormActionPerformed(evt);
+            }
+        });
+        txtSearchForm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchFormKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchFormKeyReleased(evt);
+            }
+        });
         jPanel3.add(txtSearchForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 400, 40));
 
         btnReset.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
         btnReset.setText("Làm mới");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 120, 40));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 760, 90));
+
+        jScrollPane1.setBorder(null);
+
+        tblDonNghi.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
+        tblDonNghi.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Mã đơn nghỉ", "Họ tên", "Loại nghỉ", "Ngày nộp đơn", "Ngày bắt đầu nghỉ", "Ngày kết thúc nghỉ", "Ghi chú", "Trạng thái"
+            }
+        ));
+        tblDonNghi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblDonNghiMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblDonNghi);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1160, 620));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 1180, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 622, Short.MAX_VALUE))
+            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
 
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void txtSearchFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchFormActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchFormActionPerformed
+
+    private void txtSearchFormKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchFormKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchFormKeyPressed
+
+    private void txtSearchFormKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchFormKeyReleased
+
+    }//GEN-LAST:event_txtSearchFormKeyReleased
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void tblDonNghiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDonNghiMousePressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tblDonNghiMousePressed
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -174,7 +370,9 @@ public class DonNghiForm extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbxlLuaChon;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JTable tblDonNghi;
     private javax.swing.JTextField txtSearchForm;
     // End of variables declaration//GEN-END:variables
 }
