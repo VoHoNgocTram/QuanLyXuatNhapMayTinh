@@ -302,8 +302,62 @@ INSERT INTO `chitietquyen` (`manhomquyen`, `machucnang`, `hanhdong`, `hanche`) V
 (4, 'phieuxuat', 'create', '[]'),
 (4, 'phieuxuat', 'view', '[]'),
 (4, 'sanpham', 'view', '[]'),
-(4, 'tonkho', 'view', '[\"gianhap\"]');
-
+(4, 'tonkho', 'view', '[\"gianhap\"]'),
+(7, 'kho', 'create', '[]'),
+(7, 'kho', 'delete', '[]'),
+(7, 'kho', 'update', '[]'),
+(7, 'kho', 'view', '[]'),
+(7, 'loaisanpham', 'create', '[]'),
+(7, 'loaisanpham', 'delete', '[]'),
+(7, 'loaisanpham', 'update', '[]'),
+(7, 'loaisanpham', 'view', '[]'),
+(7, 'nhacungcap', 'create', '[]'),
+(7, 'nhacungcap', 'delete', '[]'),
+(7, 'nhacungcap', 'update', '[]'),
+(7, 'nhacungcap', 'view', '[]'),
+(7, 'phieunhap', 'create', '[]'),
+(7, 'phieunhap', 'view', '[]'),
+(7, 'phieuxuat', 'create', '[]'),
+(7, 'phieuxuat', 'view', '[]'),
+(7, 'sanpham', 'create', '[]'),
+(7, 'sanpham', 'delete', '[]'),
+(7, 'sanpham', 'update', '[]'),
+(7, 'sanpham', 'view', '[]'),
+(7, 'taikhoan', 'create', '[]'),
+(7, 'taikhoan', 'delete', '[]'),
+(7, 'taikhoan', 'view', '[]'),
+(7, 'thongke', 'view', '[]'),
+(7, 'tonkho', 'update', '[]'),
+(7, 'tonkho', 'view', '[]'),
+(3, 'donnghi', 'create', '[]'),
+(3, 'donnghi', 'update', '[]'),
+(3, 'donnghi', 'view', '[]'),
+(3, 'bangluong', 'view', '[]'),
+(3, 'nhanvien', 'update', '[]'),
+(3, 'nhanvien', 'view', '[]'),
+(4, 'nhanvien', 'update', '[]'),
+(4, 'nhanvien', 'view', '[]'),
+(4, 'donnghi', 'create', '[]'),
+(4, 'donnghi', 'update', '[]'),
+(4, 'donnghi', 'view', '[]'),
+(4, 'bangluong', 'view', '[]'),
+(6, 'nhanvien', 'create', '[]'),
+(6, 'nhanvien', 'delete', '[]'),
+(6, 'nhanvien', 'update', '[]'),
+(6, 'nhanvien', 'view', '[]'),
+(6, 'bangluong', 'create', '[]'),
+(6, 'bangluong', 'update', '[]'),
+(6, 'bangluong', 'view', '[]'),
+(6, 'chucvu', 'create', '[]'),
+(6, 'chucvu', 'update', '[]'),
+(6, 'chucvu', 'view', '[]'),
+(6, 'donnghi', 'create', '[]'),
+(6, 'donnghi', 'delete', '[]'),
+(6, 'donnghi', 'update', '[]'),
+(6, 'donnghi', 'view', '[]'),
+(6, 'thongkeluong', 'create', '[]'),
+(6, 'thongkeluong', 'update', '[]'),
+(6, 'thongkeluong', 'view', '[]');
 -- --------------------------------------------------------
 
 --
@@ -329,8 +383,12 @@ INSERT INTO `chucnang` (`machucnang`, `tenchucnang`, `trangthai`) VALUES
 ('sanpham', 'Quản lý sản phẩm', 1),
 ('taikhoan', 'Quản lý tài khoản', 1),
 ('thongke', 'Thống kê', 1),
-('tonkho', 'Quản lý tồn kho', 1);
-
+('tonkho', 'Quản lý tồn kho', 1),
+('nhanvien', 'Quản lý nhân viên', 1),
+('bangluong', 'Quản lý bảng lương', 1),
+('thongkeluong', 'Thống kê lương', 1),
+('donnghi', 'Quản lý nghỉ phép', 1),
+('chucvu', 'Quản lý chức vụ', 1);
 -- --------------------------------------------------------
 
 --
@@ -411,10 +469,10 @@ INSERT INTO `nguoidung` (`taikhoan`, `matkhau`, `hoten`, `email`, `manhomquyen`,
 ('testuser3', '$2a$12$3QfUiAHfBXV4uBpdv6u9AuXHz4w18ab/Uw02Dj7fBRmJDEUt1JVQS', 'Trần Đức Duy', 'testuser3@gmail.com', 4, 1),
 ('thienan', '$2a$12$BQ3I/AQ4CrxTWEl.qscdken6AOUxYgXt0jRVSV0vREsjhGRUpkIOS', 'Nguyễn Thiên Ân', 'thienan@gmail.com', 2, 1),
 ('thuyduyen', '$2a$12$Zz/ScTqeWvuBorhHYF1XpOKD8g0XhFHX81AGEFbMdIlUJYVFyic4u', 'Nguyễn Thuỳ Duyên', 'thuyduyen@gmail.com', 2, 1),
-('trunganh', '$2a$12$hGpO.9TAkYJBVlTJ0LTdvu4ykf.NAL.jHjSDQwKUqN1qD4b8xcNOK', 'Nguyễn Trung Anh', 'trunganh@gmail.com', 2, 1);
-
+('trunganh', '$2a$12$hGpO.9TAkYJBVlTJ0LTdvu4ykf.NAL.jHjSDQwKUqN1qD4b8xcNOK', 'Nguyễn Trung Anh', 'trunganh@gmail.com', 2, 1),
+('trongtien', '$2a$12$2coofFU9uiT.eJd2mMi1yeCA.z.HFzUWqa81N5nZECa57RrAj8VvC', 'Hoàng Trọng Tiến', 'trongtien@gmail.com', 7, 1),
+('trungkien', '$2a$12$YYt6MJDhFmYOVrmRj/B1ueA0WhxTM.Lr1cRA0VAoc8DEgPpuFl0TS', 'Bùi Nguyễn Trung Kiên', 'trungkien@gmail.com', 6, 1);
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `nhacungcap`
 --
@@ -463,7 +521,9 @@ INSERT INTO `nhomquyen` (`manhomquyen`, `tennhomquyen`, `douutien`, `trangthai`)
 (2, 'Quản lý kho', 1, 1),
 (3, 'Nhân viên nhập hàng', 0, 1),
 (4, 'Nhân viên xuất hàng', 0, 1),
-(5, 'test', 0, 0);
+(5, 'test', 0, 0),
+(6, 'Quản lý nhân sự', 1, 1),
+(7, 'Quản lý kinh doanh', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -641,6 +701,190 @@ INSERT INTO `trangthaiphieunhap` (`matrangthai`, `tentrangthai`) VALUES
 -- Indexes for dumped tables
 --
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nhanvien`
+--
+
+CREATE TABLE `nhanvien` (
+  `manv` int(11) NOT NULL,
+  `hoten` varchar(100) NOT NULL,
+  `ngaysinh` date NOT NULL,
+  `gioitinh` enum('Nam','Nữ') NOT NULL,
+  `diachi` varchar(255) NOT NULL,
+  `sdt` varchar(15) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `machucvu` int(11) NOT NULL,
+  `ngayvaolam` date NOT NULL,
+  `songayphep` int DEFAULT 12,
+  `luongcoban` decimal(10,2) NOT NULL,
+  `trangthai` enum('Đang làm','Nghỉ việc') DEFAULT 'Đang làm'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Dumping data for table `nhanvien`
+--
+
+
+
+--
+-- Indexes for dumped tables
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chucvu`
+--
+
+CREATE TABLE `chucvu` (
+  `machucvu` int(11) NOT NULL,
+  `tenchucvu` varchar(100) NOT NULL,
+  `luongcoban` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Dumping data for table `trangthaiphieunhap`
+--
+
+
+
+--
+-- Indexes for dumped tables
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chucvu`
+--
+
+CREATE TABLE `lichsuchucvu` (
+  `mals` int(11) NOT NULL,
+  `manv` int(11) NOT NULL,
+  `machucvu` int(11) NOT NULL,
+  `ngaythaydoi` date NOT NULL,
+  `luong`int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Dumping data for table `trangthaiphieunhap`
+--
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bangluong`
+--
+
+CREATE TABLE `bangluong` (
+  `mabl` int(11) NOT NULL,
+  `manv` int(11) NOT NULL,
+  `thang` int(2) NOT NULL,
+  `nam` int(4) NOT NULL,
+  `luongcoban` int NOT NULL,
+  `thuong` int DEFAULT 0,
+  `truluong` int DEFAULT 0,
+  `tongluong` int NOT NULL,
+  `ngaytinhluong` DATE NOT NULL,
+  `songaycong` INT DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Dumping data for table `bangluong`
+--
+
+INSERT INTO `bangluong` (`matrangthai`, `tentrangthai`) VALUES
+(1, 'pending'),
+(2, 'cancelled'),
+(3, 'approved'),
+(4, 'delivered');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chamcong`
+--
+
+CREATE TABLE chamcong (
+   `machamcong` INT(11) NOT NULL,
+   `manv` int(11) NOT NULL,
+   `ngaylam` date NOT NULL,
+   `trangthai` enum('Có mặt', 'Vắng mặt') NOT NULL DEFAULT 'Có mặt'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `donnghi`
+--
+
+CREATE TABLE `donnghi` (
+  `madn` int(11) NOT NULL,
+  `manv` int(11) NOT NULL,
+  `loai_nghi`enum('Nghỉ phép', 'Nghỉ ốm', 'Thai sản', 'Nghỉ việc') NOT NULL,
+  `ngaynopdon` date NOT NULL,
+  `ngaybatdau` date NOT NULL,
+  `ngayketthuc` date NOT NULL,
+  `trangthai` INT(11) NOT NULL DEFAULT 1,
+  `ghichu` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `donnghi`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `donnghi`
+--
+
+CREATE TABLE `trangthaiduyetdon` (
+  `matrangthai` int(11) NOT NULL,
+  `tentrangthai` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `donnghi`
+--
+
+INSERT INTO `trangthaiduyetdon` (`matrangthai`, `tentrangthai`) VALUES
+(1, 'Chờ duyệt'),
+(2, 'Đã duyệt'),
+(3, 'Từ chối');
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thongkeluong`
+--
+
+CREATE TABLE `thongkeluong` (
+  `mathongkeluong` INT(11) NOT NULL,
+  `thang` INT(2) NOT NULL,
+  `nam` INT(4) NOT NULL,
+  `tongnhanvien` INT(11) NOT NULL,
+  `tongluong` int NOT NULL,
+  `tongthuong` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `thongkeluong`
+--
+
+
+
+
 --
 -- Indexes for table `chitietcungcap`
 --
@@ -738,6 +982,61 @@ ALTER TABLE `sanpham`
 --
 ALTER TABLE `trangthaiphieunhap`
   ADD PRIMARY KEY (`matrangthai`);
+
+--
+-- Indexes for table `nhanvien`
+--
+ALTER TABLE `nhanvien`
+  ADD PRIMARY KEY (`manv`),
+  ADD KEY `FK_NHANVIEN_CHUCVU` (`machucvu`);
+
+--
+-- Indexes for table `chucvu`
+--
+ALTER TABLE `chucvu`
+  ADD PRIMARY KEY (`machucvu`);
+
+--
+-- Indexes for table `lichsuchucvu`
+--
+ALTER TABLE `lichsuchucvu`
+  ADD PRIMARY KEY (`mals`),
+  ADD KEY `FK_LICHSUCHUCVU_NHANVIEN` (`manv`),
+  ADD KEY `FK_LICHSUCHUCVU_CHUCVU` (`machucvu`);
+
+--
+-- Indexes for table `bangluong`
+--
+ALTER TABLE `bangluong`
+  ADD PRIMARY KEY (`mabl`),
+  ADD KEY `FK_BANGLUONG_NHANVIEN` (`manv`);
+
+--
+-- Indexes for table `chamcong`
+--
+ALTER TABLE `chamcong`
+  ADD PRIMARY KEY (`machamcong`),
+  ADD KEY `FK_CHAMCONG_NHANVIEN` (`manv`);
+
+--
+-- Indexes for table `donnghi`
+--
+ALTER TABLE `donnghi`
+  ADD PRIMARY KEY (`madn`),
+  ADD KEY `FK_DONNGHI_NHANVIEN` (`manv`),
+  ADD KEY `FK_DONNGHI_TRANGTHAIDUYETDON` (`trangthai`);
+
+--
+-- Indexes for table `trangthaiduyetdon`
+--
+ALTER TABLE `trangthaiduyetdon`
+  ADD PRIMARY KEY (`matrangthai`);
+
+--
+-- Indexes for table `thongkeluong`
+--
+ALTER TABLE `thongkeluong`
+  ADD PRIMARY KEY (`mathongkeluong`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -852,6 +1151,38 @@ ALTER TABLE `phieuxuat`
 --
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `FK_SANPHAM_LOAISANPHAM` FOREIGN KEY (`maloaisanpham`) REFERENCES `loaisanpham` (`maloaisanpham`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `nhanvien`
+--
+ALTER TABLE `nhanvien`
+  ADD CONSTRAINT `FK_NHANVIEN_CHUCVU` FOREIGN KEY (`machucvu`) REFERENCES `chucvu` (`machucvu`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+--
+-- Constraints for table `lichsuchucvu`
+--
+ALTER TABLE `lichsuchucvu`
+  ADD CONSTRAINT `FK_LICHSUCHUCVU_NHANVIEN` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_LICHSUCHUCVU_CHUCVU` FOREIGN KEY (`machucvu`) REFERENCES `chucvu` (`machucvu`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+--
+-- Constraints for table `bangluong`
+--
+ALTER TABLE `bangluong`
+  ADD CONSTRAINT `FK_BANGLUONG_NHANVIEN` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+--
+-- Constraints for table `donnghi`
+--
+ALTER TABLE `donnghi`
+  ADD CONSTRAINT `FK_DONNGHI_NHANVIEN` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_DONNGHI_TRANGTHAIDUYETDON` FOREIGN KEY (`trangthai`) REFERENCES `trangthaiduyetdon` (`matrangthai`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+--
+-- Constraints for table `chamcong`
+--
+ALTER TABLE `chamcong`
+  ADD CONSTRAINT `FK_CHAMCONG_NHANVIEN` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
