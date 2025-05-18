@@ -468,7 +468,7 @@ CREATE TABLE `nguoidung` (
   `hoten` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `manhomquyen` int(11) NOT NULL,
-  `ngaysinh `DATE NULL,
+  `ngaysinh` DATE NULL,
   `gioitinh` ENUM('Nam', 'Nữ') NOT NULL,
   `diachi` VARCHAR(255) NOT NULL,
   `sdt` VARCHAR(50) NOT NULL,
@@ -1060,10 +1060,7 @@ ALTER TABLE `kho`
 ALTER TABLE `donnghi`
   MODIFY `madn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `nhanvien`
---
-ALTER TABLE `nhanvien`
-  MODIFY `manv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 
 --
 -- AUTO_INCREMENT for table `loaisanpham`

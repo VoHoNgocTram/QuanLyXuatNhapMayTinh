@@ -31,11 +31,11 @@ MySQL: Hệ quản trị cơ sở dữ liệu để lưu trữ dữ liệu ứng
 JDBC: Java Database Connectivity để tương tác với cơ sở dữ liệu MySQL.
 
 # Cấu trúc dự án
-src/DAO: Các lớp Data Access Object để xử lý thao tác cơ sở dữ liệu (ví dụ: NhaCungCapDAO, PhieuNhapDAO).
-src/DTO: Các lớp Data Transfer Object để mô hình hóa các thực thể (ví dụ: NhaCungCap, NhanVien, PhieuNhap).
-src/GUI: Các lớp Java Swing cho giao diện người dùng (ví dụ: NhaCungCapForm, PhieuNhapForm).
+src/DAO: Các lớp Data Access Object để xử lý thao tác cơ sở dữ liệu (ví dụ: ChiTietHoaDonDAO, HangHoaDAO).
+src/DTO: Các lớp Data Transfer Object để mô hình hóa các thực thể (ví dụ: HangHoa, NhanVien, HoaDon).
+src/GUI: Các lớp Java Swing cho giao diện người dùng (ví dụ: frmHangHoa, frmHoaDonNhap).
 src/ConnectDB: Thiết lập và cấu hình kết nối cơ sở dữ liệu (ConnectDB.java).
-src/BUS: Lớp logic nghiệp vụ để xử lý các hoạt động giữa GUI và DAO (ví dụ: NhaCungCapBUS).
+src/BUS: Lớp logic nghiệp vụ để xử lý các hoạt động giữa GUI và DAO (ví dụ: HangHoaBUS).
 
 # Yêu cầu
 Java Development Kit (JDK): Phiên bản 8 trở lên.

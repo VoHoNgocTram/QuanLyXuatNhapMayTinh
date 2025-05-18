@@ -11,7 +11,31 @@ import java.util.ArrayList;
 public class NhomQuyenDAO {
     public NhomQuyenDAO() {
     }
-    
+    public ArrayList<NhomQuyenDTO> getAllNhomQuyen() {
+        ArrayList<NhomQuyenDTO> dsNhomQuyen = new ArrayList<>();
+        try {
+            Connection con = JDBCUtil.getConnection();
+
+            String sql = "SELECT * FROM nhomquyen";
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                NhomQuyenDTO nq = new NhomQuyenDTO(
+                    rs.getInt("manhomquyen"),
+                    rs.getString("tennhomquyen"),
+                    rs.getInt("douutien"),
+                    rs.getInt("trangthai")
+                );
+                dsNhomQuyen.add(nq);
+            }
+
+            JDBCUtil.closeConnection(con);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsNhomQuyen;
+    }
     public NhomQuyenDTO getPermissionById(int maNhomQuyen) throws SQLException {
         NhomQuyenDTO info = null;
         try {

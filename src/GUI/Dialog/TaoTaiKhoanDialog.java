@@ -117,6 +117,7 @@ public class TaoTaiKhoanDialog extends javax.swing.JDialog {
                 taiKhoanGUI.getUserList(query, userPriority);
             }
             JOptionPane.showMessageDialog(this, "Tạo tài khoản mới thành công");
+            
         } else {
             JOptionPane.showMessageDialog(this, "Có lỗi xảy ra trong quá trình tạo tài khoản, vui lòng thử lại.");
         }
