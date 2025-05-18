@@ -256,4 +256,27 @@ public class NguoiDungBUS {
         }
         return result;
     }
+    
+    public String updateCaNhan(NguoiDungDTO user) {
+        try {
+            if (ndDAO.updateInfo(user))
+                return "Cập nhật thành công!";
+            else
+                return "Không có dữ liệu nào được cập nhật (có thể tài khoản không tồn tại hoặc dữ liệu không đổi).";
+        } catch (Exception e) {
+            return "Cập nhật thất bại: " + e.getMessage();
+        }
+    }
+    
+    //Dùng cho phần Nhân Viên
+    public ArrayList<NguoiDungDTO> getAllDanhSachNhanVien(){
+        return ndDAO.getAllDanhSachNhanVien();
+    }
+    
+    public String updateChucVuNhanVien(NguoiDungDTO nd){
+        if(ndDAO.updateChucVuCuaNhanVien(nd))
+           return "Cập nhật thành công!";
+        return "Cập nhật thất bại!";
+    
+    }   
 }

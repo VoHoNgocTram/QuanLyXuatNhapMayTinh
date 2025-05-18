@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 
 public class NguoiDungDAO {
     public NguoiDungDAO() {
@@ -253,5 +254,148 @@ public class NguoiDungDAO {
             throw e;
         }
         return result;
+    }
+    
+    // Dùng cho phần Cá nhân (Nhân viên có thể xem/sửa thông tin cá nhân của mình)
+    public boolean updateInfo(NguoiDungDTO user) {
+        boolean ketQua = false;
+        try {
+            java.sql.Connection con = JDBCUtil.getConnection();
+            String sql = "UPDATE nguoidung SET email=?, ngaysinh=?, gioitinh=?, diachi=?, sdt=? WHERE taikhoan=? AND trangthai = 1";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, user.getEmail());
+            if (user.getNgaySinh() != null) {
+                pst.setDate(2, new java.sql.Date(user.getNgaySinh().getTime()));
+            } else {
+                pst.setNull(2, java.sql.Types.DATE);
+            }
+            pst.setString(3, user.getGioiTinh());
+            pst.setString(4, user.getDiaChi());
+            pst.setString(5, user.getSdt());
+            pst.setString(6, user.getTaiKhoan());
+            if (pst.executeUpdate() >= 1) {
+                ketQua = true;
+            }
+            JDBCUtil.closeConnection(con);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi khi cập nhật thông tin: " + e.getMessage());
+        }
+        return ketQua;
+    }
+    
+    
+    public boolean hasEmailException(NguoiDungDTO user) {
+        boolean result = false;
+        try {
+            Connection con = JDBCUtil.getConnection();
+            String sql = "SELECT email FROM nguoidung WHERE trangthai = 1 AND email = ? AND taikhoan <> ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, user.getEmail());
+            pst.setString(2, user.getTaiKhoan());
+            ResultSet rs = pst.executeQuery();
+            result = rs.next();
+            JDBCUtil.closeConnection(con);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public boolean hasSDTException(NguoiDungDTO user) {
+        boolean result = false;
+        try {
+            Connection con = JDBCUtil.getConnection();
+            String sql = "SELECT sdt FROM nguoidung WHERE trangthai = 1 AND sdt = ? AND taikhoan <> ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, user.getSdt());
+            pst.setString(2, user.getTaiKhoan());
+            ResultSet rs = pst.executeQuery();
+            result = rs.next();
+            JDBCUtil.closeConnection(con);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
+    public NguoiDungDTO getInfoByAccount(String taiKhoan) throws SQLException {
+        NguoiDungDTO user = null;
+        try {
+            Connection conn = JDBCUtil.getConnection();
+            String query = "SELECT taikhoan, hoten, email, ngaysinh, gioitinh, diachi, sdt, tenchucvu, ngayvaolam, songayphep, luongcoban FROM nguoidung WHERE taikhoan = ? and trangthai = 1";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, taiKhoan);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                taiKhoan = rs.getString("taikhoan");
+                String hoTen = rs.getString("hoten");
+                String email = rs.getString("email");
+                java.sql.Date ngaySinh = rs.getDate("ngaysinh");
+                String gioiTinh = rs.getString("gioitinh");
+                String diaChi = rs.getString("diachi");
+                String sdt = rs.getString("sdt");
+                String tenChucVu = rs.getString("tenchucvu");
+                java.sql.Date ngayVaoLam = rs.getDate("ngayvaolam");
+                int soNgayPhep = rs.getInt("songayphep");
+                int luongCB = rs.getInt("luongcoban");
+                user = new NguoiDungDTO(taiKhoan, hoTen, email, luongCB, ngaySinh, gioiTinh, diaChi, sdt, tenChucVu, ngayVaoLam, soNgayPhep, luongCB);
+            }
+            JDBCUtil.closeConnection(conn);
+        } catch (SQLException e) {
+            throw e;
+        }
+        return user;
+    }
+    
+    // Dùng cho phần nhân viên (Quản lý nhân sự được quyền thêm/xóa nhân sự)
+    public ArrayList<NguoiDungDTO> getAllDanhSachNhanVien(){
+        ArrayList<NguoiDungDTO> ketQua = new ArrayList<NguoiDungDTO>();
+        try {
+            java.sql.Connection con = JDBCUtil.getConnection();
+            String sql = "SELECT * FROM nguoidung WHERE trangthai = 1";
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()){
+                String taiKhoan = rs.getString("taikhoan");
+                String hoTen = rs.getString("hoten");
+                String email = rs.getString("email");
+                Date ngaySinh = rs.getDate("ngaysinh");
+                String gioiTinh = rs.getString("gioitinh");
+                String sdt = rs.getString("sdt");
+                String diaChi = rs.getString("diachi");
+                String tenChucVu = rs.getString("tenchucvu");
+                Date ngayVaoLam = rs.getDate("ngayvaolam");
+                int soNgayPhep = rs.getInt("songayphep");
+                int luongCoBan = rs.getInt("luongcoban");
+                
+                NguoiDungDTO nd = new NguoiDungDTO(taiKhoan, hoTen, email, ngaySinh, gioiTinh, diaChi, sdt, tenChucVu, ngayVaoLam, soNgayPhep, luongCoBan);
+                ketQua.add(nd);
+            }
+            JDBCUtil.closeConnection(con);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ketQua;
+    }
+    
+    public boolean updateChucVuCuaNhanVien(NguoiDungDTO nd) {
+        boolean ketQua = false;
+        try {
+            java.sql.Connection con = JDBCUtil.getConnection();
+            String sql = "UPDATE nguoidung SET maChucVu=? WHERE taikhoan=? AND trangthai = 1";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, nd.getMaChucVu());
+            pst.setString(2, nd.getTaiKhoan());
+            if(pst.executeUpdate() >= 1){
+                ketQua = true;
+            }
+            JDBCUtil.closeConnection(con);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return ketQua;
+
     }
 }

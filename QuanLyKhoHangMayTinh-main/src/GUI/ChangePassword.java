@@ -9,6 +9,7 @@ import DTO.NguoiDungDTO;
 import helper.BCrypt;
 import javax.swing.JOptionPane;
 import DAO.NguoiDungDAO;
+import java.awt.Window;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,9 +40,10 @@ public class ChangePassword extends javax.swing.JDialog {
 //        
 //    }
     
-    public ChangePassword(javax.swing.JFrame parent, boolean modal) {
-        super(parent, modal);
+    public ChangePassword(Window parent, boolean modal, NguoiDungDTO user) {
+        super(parent, ModalityType.APPLICATION_MODAL);
         initComponents();
+        this.user = user;
         setLocationRelativeTo(null);
         
     }
@@ -60,9 +62,6 @@ public class ChangePassword extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         this.user = user;
-        tenTaiKhoan.setText(user.getTaiKhoan());
-        hoten.setText(user.getHoTen());
-        email.setText(user.getEmail());
         
     }
 
@@ -83,14 +82,6 @@ public class ChangePassword extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        panel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        tenTaiKhoan = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        hoten = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        email = new javax.swing.JTextField();
         panel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -112,7 +103,7 @@ public class ChangePassword extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("THAY ĐỔI THÔNG TIN");
+        jLabel1.setText("THAY ĐỔI MẬT KHẨU");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -130,77 +121,6 @@ public class ChangePassword extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
-
-        panel.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setText("Họ và tên");
-
-        tenTaiKhoan.setEnabled(false);
-        tenTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tenTaiKhoanActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Email");
-
-        hoten.setEnabled(false);
-        hoten.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hotenActionPerformed(evt);
-            }
-        });
-
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        jButton1.setText("Lưu thay đổi");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Tài khoản");
-
-        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(panelLayout);
-        panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel7)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hoten, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tenTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53))
-            .addGroup(panelLayout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tenTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hoten, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Thông tin", panel);
 
         panel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -326,50 +246,6 @@ public class ChangePassword extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        try {
-            // TODO add your handling code here:
-//        String nameAccount = tenTaiKhoan.getText();
-//        String emailAccount = email.getText();
-//        String passwordAccount = password.getText();
-//        if (nameAccount.equals("") || emailAccount.equals("") || passwordAccount.equals("")) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin !");
-//        } else {
-//            if (isValid(emailAccount)) {
-//                if (BCrypt.checkpw(passwordAccount, accCur.getPassword())) {
-//                    accCur.setFullName(nameAccount);
-//                    accCur.setEmail(emailAccount);
-//                    AccountDAO.getInstance().update(accCur);
-//                    JOptionPane.showMessageDialog(this, "Đã thay đổi thành công !");
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Sai mật khẩu !");
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Email không đúng định dạng !");
-//            }
-//        }
-
-        String emailAccount = email.getText().trim();
-        if (emailAccount.equals(user.getEmail()))
-            return;
-        if(emailAccount.equals("")){
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
-        } else {
-            if (isValid(emailAccount)) {
-                    user.setEmail(emailAccount);
-                try {
-//                    data.changeEmail(user, emailAccount);
-                    bus.ChangEmail(user, emailAccount);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                    JOptionPane.showMessageDialog(this, "Đã thay đổi thành công !");
-            } else {
-                JOptionPane.showMessageDialog(this, "Email không đúng định dạng !");
-            }
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         boolean check = true;
@@ -400,27 +276,27 @@ public class ChangePassword extends javax.swing.JDialog {
         }
         if (check == true) {
             if (BCrypt.checkpw(curPass, user.getMatKhau())) {
-//                BCrypt.hashpw(txtpassword.getText(), BCrypt.gensalt(12))
+                //                BCrypt.hashpw(txtpassword.getText(), BCrypt.gensalt(12))
                 if (newPass.length() < 6) {
                     JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu mới lớn hơn hoặc bằng 6 kí tự");
-                } else 
-                    if (newPass.length() > 28) {
-                        JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu mới nhỏ hơn hoặc bằng 28 kí tự");
-                    }else {
-                        if (newPass.equals(newPassConf)) {
-                            String pass = BCrypt.hashpw(passAft.getText(), BCrypt.gensalt(12));
-                            user.setMatKhau(pass);
-                            try {
-                                //AccountDAO.getInstance().update(accCur);
-                                bus.ChangPassword(user, pass);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            JOptionPane.showMessageDialog(this, "Thay đổi mật khẩu thành công!");
-                        } else {
-                            JOptionPane.showMessageDialog(this, "Mật khẩu mới không khớp");
+                } else
+                if (newPass.length() > 28) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu mới nhỏ hơn hoặc bằng 28 kí tự");
+                }else {
+                    if (newPass.equals(newPassConf)) {
+                        String pass = BCrypt.hashpw(passAft.getText(), BCrypt.gensalt(12));
+                        user.setMatKhau(pass);
+                        try {
+                            //AccountDAO.getInstance().update(accCur);
+                            bus.ChangPassword(user, pass);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        JOptionPane.showMessageDialog(this, "Thay đổi mật khẩu thành công!");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Mật khẩu mới không khớp");
                     }
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Mật khẩu hiện tại không đúng ");
                 passCur.setText("");
@@ -432,35 +308,20 @@ public class ChangePassword extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_passCurActionPerformed
 
-    private void tenTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tenTaiKhoanActionPerformed
-        
-    }//GEN-LAST:event_tenTaiKhoanActionPerformed
-
-    private void hotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotenActionPerformed
-        
-    }//GEN-LAST:event_hotenActionPerformed
-
     static boolean isValid(String email) {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField email;
-    private javax.swing.JTextField hoten;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JPanel panel;
     private javax.swing.JPanel panel2;
     private javax.swing.JPasswordField passAft;
     private javax.swing.JLabel passAftEr;
@@ -468,6 +329,5 @@ public class ChangePassword extends javax.swing.JDialog {
     private javax.swing.JLabel passComEr;
     private javax.swing.JPasswordField passCur;
     private javax.swing.JLabel passCurEr;
-    private javax.swing.JTextField tenTaiKhoan;
     // End of variables declaration//GEN-END:variables
 }

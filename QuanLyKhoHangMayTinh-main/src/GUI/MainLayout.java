@@ -5,7 +5,10 @@ import DTO.NguoiDungDTO;
 import DTO.NhomQuyenDTO;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -35,7 +38,7 @@ public class MainLayout extends javax.swing.JFrame {
         this.user = user;
         this.permission = permission;
         this.permissionInfo = permissionInfo;
-        javax.swing.JPanel[] panels = {Kho, NhaCungCap, PhieuNhap, PhieuXuat, SanPham, TaiKhoan, ThongKe};
+        javax.swing.JPanel[] panels = {Kho, NhaCungCap, PhieuNhap, PhieuXuat, SanPham, TaiKhoan, ThongKe, NhanVien, DonNghi, CaNhan, BangLuong, ChucVu};
         hideAllControllers(panels);
         authorize(panels, permission);
         lblFullName.setText(user.getHoTen());
@@ -93,13 +96,33 @@ public class MainLayout extends javax.swing.JFrame {
                 ThongKeMouseClicked(null);
                 ThongKeMousePressed(null);
                 break;
+            case "nhanvien":
+                NhanVienMouseClicked(null);
+                NhanVienMousePressed(null);
+                break;
+            case "donnghi":
+                DonNghiMouseClicked(null);
+                DonNghiMousePressed(null);
+                break;
+            case "canhan":
+                CaNhanMouseClicked(null);
+                CaNhanMousePressed(null);
+                break;
+            case "bangluong":
+                BangLuongMouseClicked(null);
+                BangLuongMousePressed(null);
+                break;
+            case "chucvu":
+                ChucVuMouseClicked(null);
+                ChucVuMousePressed(null);
+                break; 
             default:
                 
         }
     }
     
     private void resetBackgroundAllPanels() {
-        javax.swing.JPanel[] panels = {Kho, NhaCungCap, PhieuNhap, PhieuXuat, SanPham, TaiKhoan, ThongKe};
+        javax.swing.JPanel[] panels = {Kho, NhaCungCap, PhieuNhap, PhieuXuat, SanPham, TaiKhoan, ThongKe, NhanVien, DonNghi, CaNhan, BangLuong, ChucVu};
         for (javax.swing.JPanel panel : panels) {
             panel.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         }
@@ -135,8 +158,16 @@ public class MainLayout extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         ThongKe = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
+        NhanVien = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        DonNghi = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        BangLuong = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        ChucVu = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
         pSettings = new javax.swing.JPanel();
-        Account = new javax.swing.JPanel();
+        CaNhan = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         DangXuat = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -358,33 +389,130 @@ public class MainLayout extends javax.swing.JFrame {
 
         pNav.add(ThongKe);
 
+        NhanVien.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        NhanVien.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 1));
+        NhanVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        NhanVien.setMinimumSize(new java.awt.Dimension(240, 36));
+        NhanVien.setName("nhanvien"); // NOI18N
+        NhanVien.setPreferredSize(new java.awt.Dimension(240, 36));
+        NhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NhanVienMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                NhanVienMousePressed(evt);
+            }
+        });
+        NhanVien.setLayout(new java.awt.BorderLayout());
+
+        jLabel15.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employee.png"))); // NOI18N
+        jLabel15.setText("Nhân viên");
+        NhanVien.add(jLabel15, java.awt.BorderLayout.CENTER);
+
+        pNav.add(NhanVien);
+
+        DonNghi.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        DonNghi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 1));
+        DonNghi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DonNghi.setMinimumSize(new java.awt.Dimension(240, 36));
+        DonNghi.setName("donnghi"); // NOI18N
+        DonNghi.setPreferredSize(new java.awt.Dimension(240, 36));
+        DonNghi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DonNghiMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DonNghiMousePressed(evt);
+            }
+        });
+        DonNghi.setLayout(new java.awt.BorderLayout());
+
+        jLabel16.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/contract.png"))); // NOI18N
+        jLabel16.setText("Đơn nghỉ");
+        DonNghi.add(jLabel16, java.awt.BorderLayout.CENTER);
+
+        pNav.add(DonNghi);
+
+        BangLuong.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        BangLuong.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 1));
+        BangLuong.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BangLuong.setMinimumSize(new java.awt.Dimension(240, 36));
+        BangLuong.setName("bangluong"); // NOI18N
+        BangLuong.setPreferredSize(new java.awt.Dimension(240, 36));
+        BangLuong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BangLuongMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BangLuongMousePressed(evt);
+            }
+        });
+        BangLuong.setLayout(new java.awt.BorderLayout());
+
+        jLabel17.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/salary.png"))); // NOI18N
+        jLabel17.setText("Bảng lương");
+        BangLuong.add(jLabel17, java.awt.BorderLayout.CENTER);
+
+        pNav.add(BangLuong);
+
+        ChucVu.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        ChucVu.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 1));
+        ChucVu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ChucVu.setMinimumSize(new java.awt.Dimension(240, 36));
+        ChucVu.setName("chucvu"); // NOI18N
+        ChucVu.setPreferredSize(new java.awt.Dimension(240, 36));
+        ChucVu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChucVuMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ChucVuMousePressed(evt);
+            }
+        });
+        ChucVu.setLayout(new java.awt.BorderLayout());
+
+        jLabel18.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/project-manager.png"))); // NOI18N
+        jLabel18.setText("Chức vụ");
+        ChucVu.add(jLabel18, java.awt.BorderLayout.CENTER);
+
+        pNav.add(ChucVu);
+
         pSidebar.add(pNav, java.awt.BorderLayout.CENTER);
 
         pSettings.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         pSettings.setLayout(new java.awt.GridLayout(0, 1));
 
-        Account.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-        Account.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 1));
-        Account.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Account.setMinimumSize(new java.awt.Dimension(240, 36));
-        Account.setPreferredSize(new java.awt.Dimension(240, 36));
-        Account.addMouseListener(new java.awt.event.MouseAdapter() {
+        CaNhan.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        CaNhan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 1));
+        CaNhan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CaNhan.setMinimumSize(new java.awt.Dimension(240, 36));
+        CaNhan.setName("canhan"); // NOI18N
+        CaNhan.setPreferredSize(new java.awt.Dimension(240, 36));
+        CaNhan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AccountMouseClicked(evt);
+                CaNhanMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                AccountMousePressed(evt);
+                CaNhanMousePressed(evt);
             }
         });
-        Account.setLayout(new java.awt.BorderLayout());
+        CaNhan.setLayout(new java.awt.BorderLayout());
 
         jLabel14.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-information-25.png"))); // NOI18N
         jLabel14.setText("Cá nhân");
-        Account.add(jLabel14, java.awt.BorderLayout.CENTER);
+        CaNhan.add(jLabel14, java.awt.BorderLayout.CENTER);
 
-        pSettings.add(Account);
+        pSettings.add(CaNhan);
 
         DangXuat.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         DangXuat.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 1));
@@ -548,15 +676,25 @@ public class MainLayout extends javax.swing.JFrame {
         ThongKe.setBackground(ClickedColor);
     }//GEN-LAST:event_ThongKeMousePressed
 
-    private void AccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountMouseClicked
+    private void CaNhanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CaNhanMouseClicked
         // TODO add your handling code here:
-        ChangePassword cp = new ChangePassword(this, rootPaneCheckingEnabled, user);
-        cp.setVisible(true);
-    }//GEN-LAST:event_AccountMouseClicked
+        /*ChangePassword cp = new ChangePassword(this, rootPaneCheckingEnabled, user);
+        cp.setVisible(true);*/
+        CaNhanForm cn = null;
+        try {
+            cn = new CaNhanForm(user);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainLayout.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        pMainContent.removeAll();
+        pMainContent.add(cn).setVisible(true);
+    }//GEN-LAST:event_CaNhanMouseClicked
 
-    private void AccountMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountMousePressed
+    private void CaNhanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CaNhanMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AccountMousePressed
+        resetBackgroundAllPanels();
+        CaNhan.setBackground(ClickedColor);
+    }//GEN-LAST:event_CaNhanMousePressed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
@@ -567,6 +705,56 @@ public class MainLayout extends javax.swing.JFrame {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void NhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NhanVienMouseClicked
+        NhanVienForm nhanVienForm = new NhanVienForm(user);
+        pMainContent.removeAll();
+        pMainContent.add(nhanVienForm).setVisible(true);
+    }//GEN-LAST:event_NhanVienMouseClicked
+
+    private void NhanVienMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NhanVienMousePressed
+        resetBackgroundAllPanels();
+        NhanVien.setBackground(ClickedColor);
+    }//GEN-LAST:event_NhanVienMousePressed
+
+    private void DonNghiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DonNghiMouseClicked
+        // TODO add your handling code here:
+        DonNghiForm donNghiForm = new DonNghiForm(user);
+        pMainContent.removeAll();
+        pMainContent.add(donNghiForm).setVisible(true);
+    }//GEN-LAST:event_DonNghiMouseClicked
+
+    private void DonNghiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DonNghiMousePressed
+        // TODO add your handling code here:
+        resetBackgroundAllPanels();
+        DonNghi.setBackground(ClickedColor);
+    }//GEN-LAST:event_DonNghiMousePressed
+
+    private void BangLuongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangLuongMouseClicked
+        // TODO add your handling code here:
+        BangLuongForm bangLuongForm = new BangLuongForm(user);
+        pMainContent.removeAll();
+        pMainContent.add(bangLuongForm).setVisible(true);
+    }//GEN-LAST:event_BangLuongMouseClicked
+
+    private void BangLuongMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangLuongMousePressed
+        // TODO add your handling code here:
+        resetBackgroundAllPanels();
+        BangLuong.setBackground(ClickedColor);
+    }//GEN-LAST:event_BangLuongMousePressed
+
+    private void ChucVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChucVuMouseClicked
+        // TODO add your handling code here:
+        ChucVuForm cvForm = new ChucVuForm(user);
+        pMainContent.removeAll();
+        pMainContent.add(cvForm).setVisible(true);
+    }//GEN-LAST:event_ChucVuMouseClicked
+
+    private void ChucVuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChucVuMousePressed
+        // TODO add your handling code here:
+        resetBackgroundAllPanels();
+        ChucVu.setBackground(ClickedColor);
+    }//GEN-LAST:event_ChucVuMousePressed
 
     public NguoiDungDTO getUser() {
         return user;
@@ -605,10 +793,14 @@ public class MainLayout extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Account;
+    private javax.swing.JPanel BangLuong;
+    private javax.swing.JPanel CaNhan;
+    private javax.swing.JPanel ChucVu;
     private javax.swing.JPanel DangXuat;
+    private javax.swing.JPanel DonNghi;
     private javax.swing.JPanel Kho;
     private javax.swing.JPanel NhaCungCap;
+    private javax.swing.JPanel NhanVien;
     private javax.swing.JPanel PhieuNhap;
     private javax.swing.JPanel PhieuXuat;
     private javax.swing.JPanel SanPham;
@@ -619,6 +811,10 @@ public class MainLayout extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

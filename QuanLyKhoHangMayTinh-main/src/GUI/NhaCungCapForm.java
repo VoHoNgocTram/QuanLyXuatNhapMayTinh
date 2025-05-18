@@ -375,11 +375,59 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void tblNCCMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNCCMousePressed
         // TODO add your handling code here:
-        AddNhaCungCap a = new AddNhaCungCap(this, (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this), rootPaneCheckingEnabled);
-        a.setVisible(true);
-    }//GEN-LAST:event_btnAddActionPerformed
+        JTable table = (JTable) evt.getSource();
+        Point point = evt.getPoint();
+        int row = table.rowAtPoint(point);
+        int row_i = table.getSelectedRow();
+
+        NhaCungCapDTO ncc = getNhaCungCapSelect();
+        if(evt.getClickCount() == 2 && table.getSelectedRow() != -1 ){
+            ChiTietCungCap ql = new ChiTietCungCap(ncc );
+            ql.setVisible(true);
+        }
+    }//GEN-LAST:event_tblNCCMousePressed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtSearchForm.setText("");
+        cbxlLuaChon.setSelectedIndex(0);
+        loadDataToTable();
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void txtSearchFormKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchFormKeyReleased
+        // TODO add your handling code here:
+        String luachon = (String) cbxlLuaChon.getSelectedItem();
+        String searchContent = txtSearchForm.getText();
+        ArrayList<NhaCungCapDTO> result = new ArrayList<NhaCungCapDTO>();
+        switch (luachon) {
+            case "Tất cả":
+            result = SearchNhaCungCap.getInstance().searchTatCa(searchContent);
+            break;
+            case "Mã nhà cung cấp":
+            result = SearchNhaCungCap.getInstance().searchMaNCC(searchContent);
+            break;
+            case "Tên nhà cung cấp":
+            result = SearchNhaCungCap.getInstance().searchTenNCC(searchContent);
+            break;
+            case "Địa chỉ":
+            result = SearchNhaCungCap.getInstance().searchDiaChi(searchContent);
+            break;
+            case "Số điện thoại":
+            result = SearchNhaCungCap.getInstance().searchSdt(searchContent);
+            break;
+        }
+        loadDataToTableSearch(result);
+    }//GEN-LAST:event_txtSearchFormKeyReleased
+
+    private void txtSearchFormKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchFormKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchFormKeyPressed
+
+    private void txtSearchFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchFormActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchFormActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         if (tblNCC.getSelectedRow() == -1) {
@@ -403,59 +451,11 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        txtSearchForm.setText("");
-        cbxlLuaChon.setSelectedIndex(0);
-        loadDataToTable();
-    }//GEN-LAST:event_btnResetActionPerformed
-
-    private void txtSearchFormKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchFormKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchFormKeyPressed
-
-    private void txtSearchFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchFormActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchFormActionPerformed
-
-    private void txtSearchFormKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchFormKeyReleased
-        // TODO add your handling code here:
-        String luachon = (String) cbxlLuaChon.getSelectedItem();
-        String searchContent = txtSearchForm.getText();
-        ArrayList<NhaCungCapDTO> result = new ArrayList<NhaCungCapDTO>();
-        switch (luachon) {
-            case "Tất cả":
-                result = SearchNhaCungCap.getInstance().searchTatCa(searchContent);
-                break;
-            case "Mã nhà cung cấp":
-                result = SearchNhaCungCap.getInstance().searchMaNCC(searchContent);
-                break;
-            case "Tên nhà cung cấp":
-                result = SearchNhaCungCap.getInstance().searchTenNCC(searchContent);
-                break;
-            case "Địa chỉ":
-                result = SearchNhaCungCap.getInstance().searchDiaChi(searchContent);
-                break;
-            case "Số điện thoại":
-                result = SearchNhaCungCap.getInstance().searchSdt(searchContent);
-                break;
-        }
-        loadDataToTableSearch(result);
-    }//GEN-LAST:event_txtSearchFormKeyReleased
-
-    private void tblNCCMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNCCMousePressed
-        // TODO add your handling code here:
-        JTable table = (JTable) evt.getSource();
-                Point point = evt.getPoint();
-                int row = table.rowAtPoint(point);
-                int row_i = table.getSelectedRow();
-                
-                NhaCungCapDTO ncc = getNhaCungCapSelect();
-                if(evt.getClickCount() == 2 && table.getSelectedRow() != -1 ){
-                          ChiTietCungCap ql = new ChiTietCungCap(ncc );
-                          ql.setVisible(true);
-                }
-    }//GEN-LAST:event_tblNCCMousePressed
+        AddNhaCungCap a = new AddNhaCungCap(this, (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this), rootPaneCheckingEnabled);
+        a.setVisible(true);
+    }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
