@@ -10,6 +10,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -49,8 +50,28 @@ public class UpdateLuong extends javax.swing.JFrame {
         trangthai = trangThai;
         txtLTh.setText(String.valueOf(luongThuong));
         
+        KeyListener keyListener = new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                tinhTongLuong();
+            }
+        };          
+        txtLT.addKeyListener(keyListener);
+        txtLTh.addKeyListener(keyListener);
     }
     
+
+    private void tinhTongLuong() {
+        try {
+            int luongCoBan = Integer.parseInt(lblLCB.getText().trim());
+            int luongTru = Integer.parseInt(txtLT.getText().trim());
+            int luongThuong = Integer.parseInt(txtLTh.getText().trim());
+            int tongLuong = luongCoBan - luongTru + luongThuong;
+            lblTL.setText(String.valueOf(tongLuong));
+        } catch (NumberFormatException e) {
+            lblTL.setText("0");
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.

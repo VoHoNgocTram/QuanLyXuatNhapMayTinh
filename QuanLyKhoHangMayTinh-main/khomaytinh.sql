@@ -801,11 +801,7 @@ CREATE TABLE `bangluong` (
 -- Dumping data for table `bangluong`
 --
 
-INSERT INTO `bangluong` (`matrangthai`, `tentrangthai`) VALUES
-(1, 'pending'),
-(2, 'cancelled'),
-(3, 'approved'),
-(4, 'delivered');
+
 
 -- --------------------------------------------------------
 

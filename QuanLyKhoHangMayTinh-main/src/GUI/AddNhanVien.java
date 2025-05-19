@@ -37,10 +37,13 @@ public class AddNhanVien extends javax.swing.JFrame {
      */
     NhanVienBUS nvBUS = new NhanVienBUS();
     NhomQuyenBUS nqBUS = new NhomQuyenBUS();
+    
     private File selectedImageFile = null;
+    
     private ArrayList<ChucVuDTO> danhSachChucVu = new ArrayList<>();
     private ArrayList<NhomQuyenDTO> danhSachNhomQuyen = new ArrayList<>();
     private ArrayList<lsChucVuDTO> lsChucVu = new ArrayList<>();
+    
     public AddNhanVien() {
         initComponents();
         buttonGroup1.add(rbtnNam);
@@ -89,6 +92,7 @@ public class AddNhanVien extends javax.swing.JFrame {
                     }
                 }
             });
+            
             if (!danhSachChucVu.isEmpty()) {
             int luongDauTien = danhSachChucVu.get(0).getLuongCoBan();
             txtLuong.setText(String.valueOf(luongDauTien));
@@ -530,18 +534,21 @@ public class AddNhanVien extends javax.swing.JFrame {
         // TODO add your handling code here:
         String taikhoan = txtTaikhoan.getText();
         String Hoten = txtHoten.getText().trim();
+        
         String Gioitinh = null;
         if (rbtnNam.isSelected()) {
             Gioitinh = "Nam";
         } else if (rbtnNu.isSelected()) {
             Gioitinh = "Nữ";
         }
+        
         Date Ngaysinh = dcNgaysinh.getDate();
         String Sdt = txtSdt.getText();
         String Diachi = txtDiachi.getText().trim();
         String Email = txtEmail.getText().trim();
         Date Ngayvaolam = dcNgayvaolam.getDate();
         int Sgp = Integer.valueOf(txtSgp.getText());
+        
         String Chucvu = (String) cbxChucvu.getSelectedItem();
         int Luongcoban = Integer.valueOf(txtLuong.getText());
         String Vaitro = (String) cbxVaitro.getSelectedItem();
@@ -549,6 +556,7 @@ public class AddNhanVien extends javax.swing.JFrame {
         String[] parts1 = Vaitro.split(" - ");
         int maChucVu = Integer.parseInt(parts[0]);
         String tenchucvu = parts[1];
+        
         int manhomquyen= Integer.parseInt(parts1[0]);
         int Trangthai = 1;
         

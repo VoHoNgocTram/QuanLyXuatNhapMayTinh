@@ -124,14 +124,14 @@ public class BangLuongForm extends javax.swing.JInternalFrame {
         tblLuong.setModel(tblModel);
 
         // Căn chỉnh độ rộng cột
-        tblLuong.getColumnModel().getColumn(0).setPreferredWidth(1);
-        tblLuong.getColumnModel().getColumn(0).setPreferredWidth(1);
-        tblLuong.getColumnModel().getColumn(1).setPreferredWidth(150);
-        tblLuong.getColumnModel().getColumn(2).setPreferredWidth(2);
-        tblLuong.getColumnModel().getColumn(3).setPreferredWidth(80);
-        tblLuong.getColumnModel().getColumn(4).setPreferredWidth(70);
-        tblLuong.getColumnModel().getColumn(5).setPreferredWidth(200);
-        tblLuong.getColumnModel().getColumn(6).setPreferredWidth(150);
+        tblLuong.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tblLuong.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblLuong.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tblLuong.getColumnModel().getColumn(3).setPreferredWidth(2);
+        tblLuong.getColumnModel().getColumn(4).setPreferredWidth(80);
+        tblLuong.getColumnModel().getColumn(5).setPreferredWidth(70);
+        tblLuong.getColumnModel().getColumn(6).setPreferredWidth(200);
+        tblLuong.getColumnModel().getColumn(7).setPreferredWidth(30);
 
         // Căn giữa nội dung bảng
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -538,7 +538,9 @@ public class BangLuongForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-
+        cbxThang.setSelectedIndex(0);
+        cbxNam.setSelectedIndex(0);
+        loadDataToTable();
     }//GEN-LAST:event_btnResetActionPerformed
 
 

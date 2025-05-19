@@ -677,7 +677,7 @@ public class NhanVienForm extends javax.swing.JInternalFrame {
                 if (confirm == JOptionPane.YES_OPTION) {
                     String resultMsg = nvBUS.updateNguoiDung(taiKhoan, trangthaiMoi);
                     JOptionPane.showMessageDialog(this, resultMsg);
-                    if (resultMsg.equals("Xóa thành công!")) {
+                    if (resultMsg.equals("Cập nhật thành công!")) {
                         loadDataToTable();
                     }
                 }

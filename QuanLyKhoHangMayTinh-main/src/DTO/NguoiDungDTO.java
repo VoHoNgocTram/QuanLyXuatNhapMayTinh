@@ -89,6 +89,10 @@ public class NguoiDungDTO {
     public NguoiDungDTO() {
     }
 
+    public NguoiDungDTO(String taiKhoan, String hoTen, String email, java.sql.Date ngaySinh, String gioiTinh, String diaChi, String sdt, String tenChucVu, java.sql.Date ngayVaoLam, int soNgayPhep, int luongCoBan) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getTaiKhoan() {
         return taiKhoan;
     }

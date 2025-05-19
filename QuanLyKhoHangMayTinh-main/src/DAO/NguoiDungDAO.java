@@ -353,7 +353,7 @@ public class NguoiDungDAO {
         ArrayList<NguoiDungDTO> ketQua = new ArrayList<NguoiDungDTO>();
         try {
             java.sql.Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT * FROM nguoidung WHERE trangthai = 1";
+            String sql = "SELECT * FROM nguoidung";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()){
