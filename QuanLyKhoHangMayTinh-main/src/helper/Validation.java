@@ -38,4 +38,7 @@ public class Validation {
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
+    public static boolean isValidPhoneNumber(String phone) {
+        return phone.matches("^\\d{10}$");
+    }
 }

@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import DTO.khoDTO;
+import DTO.KhoDTO;
 import database.JDBCUtil;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,15 +22,15 @@ public class khoDAO {
         return new khoDAO();
     }
     
-    public ArrayList<khoDTO> getListWareHouse() {
-        ArrayList<khoDTO> listKho = new ArrayList<khoDTO>();
+    public ArrayList<KhoDTO> getListWareHouse() {
+        ArrayList<KhoDTO> listKho = new ArrayList<KhoDTO>();
         try {
             Connection con = JDBCUtil.getConnection();
             String sql = "SELECT * FROM kho WHERE trangthai = 1";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
-                khoDTO kho = new khoDTO();
+                KhoDTO kho = new KhoDTO();
                 kho.setMaKho(rs.getInt("makho"));
                 kho.setTenKho(rs.getString("tenkho"));
                 kho.setDiaChi(rs.getString("diachi"));
@@ -44,7 +44,7 @@ public class khoDAO {
         return listKho;
     }
     
-    public boolean addWareHouse(khoDTO kho){
+    public boolean addWareHouse(KhoDTO kho){
         boolean result = false;
         
         try {
@@ -64,7 +64,7 @@ public class khoDAO {
         return result;
     }
     
-    public boolean updateAddressWareHouse(khoDTO kho){
+    public boolean updateAddressWareHouse(KhoDTO kho){
         boolean result = false;
         
         try {
@@ -83,7 +83,7 @@ public class khoDAO {
         return result;
     }
     
-    public boolean updateNameWareHouse(khoDTO kho){
+    public boolean updateNameWareHouse(KhoDTO kho){
         boolean result = false;
         
         try {
@@ -101,7 +101,7 @@ public class khoDAO {
         }
         return result;
     }
-    public boolean updateWareHouse(khoDTO kho){
+    public boolean updateWareHouse(KhoDTO kho){
         boolean result = false;
         
         try {
@@ -139,8 +139,8 @@ public class khoDAO {
         return result;
     }
     
-    public khoDTO getWareHouseByName(String name){
-        khoDTO kho = new khoDTO();
+    public KhoDTO getWareHouseByName(String name){
+        KhoDTO kho = new KhoDTO();
         try {
             Connection con = JDBCUtil.getConnection();
             String sql = "SELECT * FROM kho WHERE trangthai = 1 and tenkho = '" + name + "'";
@@ -195,9 +195,9 @@ public class khoDAO {
         return number;
     }
     
-    public ArrayList<khoDTO> searchTatCa(String text) {
-        ArrayList<khoDTO> result = new ArrayList<>();
-        ArrayList<khoDTO> allkho = khoDAO.getInstance().getListWareHouse();
+    public ArrayList<KhoDTO> searchTatCa(String text) {
+        ArrayList<KhoDTO> result = new ArrayList<>();
+        ArrayList<KhoDTO> allkho = khoDAO.getInstance().getListWareHouse();
         for (var kho : allkho) {
 
             if (kho.getTenKho().toLowerCase().contains(text.toLowerCase())
@@ -209,9 +209,9 @@ public class khoDAO {
         return result;
     }
 
-    public ArrayList<khoDTO> searchTenKho(String text) {
-        ArrayList<khoDTO> result = new ArrayList<>();
-        ArrayList<khoDTO> allkho = khoDAO.getInstance().getListWareHouse();
+    public ArrayList<KhoDTO> searchTenKho(String text) {
+        ArrayList<KhoDTO> result = new ArrayList<>();
+        ArrayList<KhoDTO> allkho = khoDAO.getInstance().getListWareHouse();
         for (var kho : allkho) {
 
             if (kho.getTenKho().toLowerCase().contains(text.toLowerCase()))
@@ -223,9 +223,9 @@ public class khoDAO {
         return result;
     }
 
-    public ArrayList<khoDTO> searchDiaDiem(String text) {
-        ArrayList<khoDTO> result = new ArrayList<>();
-        ArrayList<khoDTO> allkho = khoDAO.getInstance().getListWareHouse();
+    public ArrayList<KhoDTO> searchDiaDiem(String text) {
+        ArrayList<KhoDTO> result = new ArrayList<>();
+        ArrayList<KhoDTO> allkho = khoDAO.getInstance().getListWareHouse();
         for (var kho : allkho) {
 
             if (kho.getDiaChi().toLowerCase().contains(text.toLowerCase())) {

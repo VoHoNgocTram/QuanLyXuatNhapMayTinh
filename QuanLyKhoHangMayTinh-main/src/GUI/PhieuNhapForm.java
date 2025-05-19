@@ -27,7 +27,7 @@ import DTO.ChiTietPhieuNhapDTO;
 import DTO.ChiTietQuyenDTO;
 import DTO.NguoiDungDTO;
 import DTO.PhieuNhapDTO;
-import DTO.khoDTO;
+import DTO.KhoDTO;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;

@@ -26,7 +26,7 @@ import DTO.SanPhamDTO;
 import DTO.ChiTietCungCapDTO;
 import DTO.NguoiDungDTO;
 import DTO.NhaCungCapDTO;
-import DTO.khoDTO;
+import DTO.KhoDTO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -582,7 +582,7 @@ public class NhapHangForm extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(modelCbbKho.getSelectedItem() != null){
             String tenKho = modelCbbKho.getSelectedItem().toString();
-            khoDTO kho = khoDAO.getInstance().getWareHouseByName(tenKho);
+            KhoDTO kho = khoDAO.getInstance().getWareHouseByName(tenKho);
             txtDiaDiemKho.setText(kho.getDiaChi());
 
         }
@@ -632,7 +632,7 @@ public class NhapHangForm extends javax.swing.JDialog {
 
             int donGia = ChiTietCungCapDAO.getInstance().findDonGia(maNhaCungCap, maSanPham);
 
-            khoDTO kho = khoDAO.getInstance().getWareHouseByName(tenKho);
+            KhoDTO kho = khoDAO.getInstance().getWareHouseByName(tenKho);
             int maKhoSelected = kho.getMaKho();
 
             PhieuNhapDAO phieuNhapDao = new PhieuNhapDAO();
@@ -740,9 +740,9 @@ public class NhapHangForm extends javax.swing.JDialog {
     
     public void addCbbTenKho(){
         
-        ArrayList<khoDTO> khoList = khoDAO.getInstance().getListWareHouse();
+        ArrayList<KhoDTO> khoList = khoDAO.getInstance().getListWareHouse();
         for ( int i = 0 ;  i < khoList.size() ; i++){
-            khoDTO kho = khoList.get(i);
+            KhoDTO kho = khoList.get(i);
             modelCbbKho.addElement(kho.getTenKho());
         }
     }

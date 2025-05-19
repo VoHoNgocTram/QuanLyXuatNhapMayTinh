@@ -11,7 +11,7 @@ import DAO.tonKhoDAO;
 import DTO.ChiTietQuyenDTO;
 import DTO.NguoiDungDTO;
 import DTO.SanPhamDTO;
-import DTO.khoDTO;
+import DTO.KhoDTO;
 import DTO.tonKhoDTO;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -258,7 +258,7 @@ public class TonKhoGUI extends javax.swing.JDialog  {
     private void cbbTenKhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTenKhoActionPerformed
         // TODO add your handling code here:
         String name = (String) modalCbbTenkho.getSelectedItem();
-        khoDTO kho = khoDAO.getInstance().getWareHouseByName(name);
+        KhoDTO kho = khoDAO.getInstance().getWareHouseByName(name);
         txtMaKho.setText(String.valueOf(kho.getMaKho()));
         txtDiaChi.setText(kho.getDiaChi());
         int makho = Integer.parseInt(txtMaKho.getText());
@@ -356,9 +356,9 @@ public class TonKhoGUI extends javax.swing.JDialog  {
     
     private void loadComboboxTenKho(){
         modalCbbTenkho = (DefaultComboBoxModel) cbbTenKho.getModel();
-        ArrayList<khoDTO> khoList= khoDAO.getInstance().getListWareHouse();
+        ArrayList<KhoDTO> khoList= khoDAO.getInstance().getListWareHouse();
         for(int i = 0; i < khoList.size() ; i++){
-            khoDTO kho = khoList.get(i);
+            KhoDTO kho = khoList.get(i);
             String name = kho.getTenKho();
             modalCbbTenkho.addElement(name);
         }

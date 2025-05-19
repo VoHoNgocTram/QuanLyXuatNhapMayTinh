@@ -6,7 +6,7 @@ package GUI;
 
 import BUS.KhoBUS;
 import DAO.khoDAO;
-import DTO.khoDTO;
+import DTO.KhoDTO;
 import GUI.khoGUI;
 import javax.swing.JOptionPane;
 
@@ -168,7 +168,7 @@ public class addKho extends javax.swing.JFrame {
         // TODO add your handling code here:
         String ten = txtTenKho.getText();
         String diadiem = txtDiaDiem.getText();
-        khoDTO kho = new khoDTO();
+        KhoDTO kho = new KhoDTO();
         kho.setTenKho(ten);
         kho.setDiaChi(diadiem);
         if(ten.trim().equals("") || diadiem.trim().equals("")){

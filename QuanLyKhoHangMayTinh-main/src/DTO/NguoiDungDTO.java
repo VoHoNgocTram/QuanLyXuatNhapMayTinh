@@ -54,24 +54,41 @@ public class NguoiDungDTO {
         this.luongCoBan = luongCoBan;
     }
 
-    public NguoiDungDTO(String taiKhoan, String hoTen, String email, Date ngaySinh, String gioiTinh, String diaChi, String sdt, String tenChucvu, Date ngayVaoLam, int soNgayPhep, int luongCoBan) {
+    public NguoiDungDTO(String taiKhoan, String hoTen, Date ngaySinh, String gioiTinh, String diaChi, String sdt, String email, int maChucVu, Date ngayVaoLam, int soNgayPhep, int luongCoBan, int trangThai) {
         this.taiKhoan = taiKhoan;
         this.hoTen = hoTen;
-        this.email = email;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
         this.diaChi = diaChi;
         this.sdt = sdt;
-        this.tenChucvu = tenChucvu;
+        this.email = email;
+        this.maChucVu = maChucVu;
         this.ngayVaoLam = ngayVaoLam;
         this.soNgayPhep = soNgayPhep;
         this.luongCoBan = luongCoBan;
+        this.trangThai = trangThai;
     }
-    
+
+    public NguoiDungDTO(String taiKhoan, String hoTen, Date ngaySinh, String gioiTinh, String diaChi, String sdt, String email, int maChucVu, Date ngayVaoLam, int soNgayPhep, int luongCoBan, int trangThai, String tenchucvu, int manhomquyen) {
+        this.taiKhoan = taiKhoan;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.email = email;
+        this.maChucVu = maChucVu;
+        this.ngayVaoLam = ngayVaoLam;
+        this.soNgayPhep = soNgayPhep;
+        this.luongCoBan = luongCoBan;
+        this.trangThai = trangThai;
+        this.tenChucvu = tenchucvu;
+        this.maNhomQuyen= manhomquyen;
+    }
     
     public NguoiDungDTO() {
     }
-   
+
     public String getTaiKhoan() {
         return taiKhoan;
     }

@@ -9,7 +9,7 @@ import BUS.KhoBUS;
 import DAO.khoDAO;
 import DTO.ChiTietQuyenDTO;
 import DTO.NguoiDungDTO;
-import DTO.khoDTO;
+import DTO.KhoDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -298,14 +298,14 @@ public class khoGUI extends javax.swing.JInternalFrame {
     private void jComboBoxLuaChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLuaChonActionPerformed
         String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
         String content = jTextFieldSearch.getText();
-        ArrayList<khoDTO> result = searchKho(luaChon, content);
+        ArrayList<KhoDTO> result = searchKho(luaChon, content);
         loadDataToTableSearch(result);
     }//GEN-LAST:event_jComboBoxLuaChonActionPerformed
 
     private void jComboBoxLuaChonPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBoxLuaChonPropertyChange
         String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
         String content = jTextFieldSearch.getText();
-        ArrayList<khoDTO> result = searchKho(luaChon, content);
+        ArrayList<KhoDTO> result = searchKho(luaChon, content);
         loadDataToTableSearch(result);
     }//GEN-LAST:event_jComboBoxLuaChonPropertyChange
 
@@ -317,7 +317,7 @@ public class khoGUI extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
         String content = jTextFieldSearch.getText();
-        ArrayList<khoDTO> result = searchKho(luaChon, content);
+        ArrayList<KhoDTO> result = searchKho(luaChon, content);
         loadDataToTableSearch(result);
     }//GEN-LAST:event_jTextFieldSearchKeyReleased
 
@@ -336,7 +336,7 @@ public class khoGUI extends javax.swing.JInternalFrame {
         int makho = Integer.parseInt(tbKho.getValueAt(row, 1).toString());
         String tenkho = tbKho.getValueAt(row, 2).toString();
         String diachi = tbKho.getValueAt(row, 3).toString();
-        khoDTO kho = new khoDTO();
+        KhoDTO kho = new KhoDTO();
         kho.setMaKho(makho);
         kho.setTenKho(tenkho);
         kho.setDiaChi(diachi);
@@ -408,9 +408,9 @@ public class khoGUI extends javax.swing.JInternalFrame {
     }
     public void loadDataWareHouse(){
        modelTbKho.setRowCount(0);
-        ArrayList<khoDTO> arr = khoDAO.getInstance().getListWareHouse();
+        ArrayList<KhoDTO> arr = khoDAO.getInstance().getListWareHouse();
         for(int i = 0 ; i< arr.size() ; i++){
-            khoDTO item = arr.get(i);
+            KhoDTO item = arr.get(i);
             int stt = i+1;
             int maKho = item.getMaKho();
             String tenKho = item.getTenKho();
@@ -423,8 +423,8 @@ public class khoGUI extends javax.swing.JInternalFrame {
         }
     }
     
-    public ArrayList<khoDTO> searchKho(String luaChon, String content) {
-        ArrayList<khoDTO> result = new ArrayList<>();
+    public ArrayList<KhoDTO> searchKho(String luaChon, String content) {
+        ArrayList<KhoDTO> result = new ArrayList<>();
         khoDAO searchPr = new khoDAO();
         switch (luaChon) {
             case "Tất cả":
@@ -441,11 +441,11 @@ public class khoGUI extends javax.swing.JInternalFrame {
         return result;
     }
     
-    public void loadDataToTableSearch(ArrayList<khoDTO> result) {
+    public void loadDataToTableSearch(ArrayList<KhoDTO> result) {
         try {
             modelTbKho.setRowCount(0);
             int stt = 0;
-            for (khoDTO i : result) {
+            for (KhoDTO i : result) {
                 
                 modelTbKho.addRow(new Object[]{
                     stt++,i.getMaKho(), i.getTenKho(), i.getDiaChi()

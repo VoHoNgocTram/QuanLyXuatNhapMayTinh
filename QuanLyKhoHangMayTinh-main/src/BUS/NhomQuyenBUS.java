@@ -10,7 +10,10 @@ public class NhomQuyenBUS {
 
     public NhomQuyenBUS() {
     }
-
+    public ArrayList<NhomQuyenDTO> getAllDSNhomQuyen() {
+        return nqDAO.getAllNhomQuyen();
+    }
+    
     public NhomQuyenDTO getPermissionById(int maNhomQuyen) throws SQLException {
         return nqDAO.getPermissionById(maNhomQuyen);
     }

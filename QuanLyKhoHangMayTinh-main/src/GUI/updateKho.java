@@ -6,7 +6,7 @@ package GUI;
 
 import BUS.KhoBUS;
 import DAO.khoDAO;
-import DTO.khoDTO;
+import DTO.KhoDTO;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,9 +21,9 @@ public class updateKho extends javax.swing.JFrame {
      * 
      */
     KhoBUS khoBUS = new KhoBUS();
-    khoDTO kho = new khoDTO();
+    KhoDTO kho = new KhoDTO();
     khoGUI parent;
-    public updateKho(khoGUI frame, khoDTO khoData) {
+    public updateKho(khoGUI frame, KhoDTO khoData) {
         initComponents();
         kho.setMaKho( khoData.getMaKho());
 

@@ -5,7 +5,7 @@
 package BUS;
 
 import DAO.khoDAO;
-import DTO.khoDTO;
+import DTO.KhoDTO;
 import java.util.ArrayList;
 
 /**
@@ -16,17 +16,17 @@ public class KhoBUS {
     
     khoDAO khDAO = new khoDAO();
     
-    public ArrayList<khoDTO> getListWareHouse() {
+    public ArrayList<KhoDTO> getListWareHouse() {
         return khDAO.getListWareHouse();
     }
     
-    public String addWareHouse(khoDTO kho){
+    public String addWareHouse(KhoDTO kho){
         if(khDAO.addWareHouse(kho))
             return "Thêm kho mới thành công!";
         return "Thêm kho mới thất bại!";
     }
     
-    public String updateWareHouse(khoDTO kho){
+    public String updateWareHouse(KhoDTO kho){
         if(khDAO.updateWareHouse(kho))
             return "Cập nhật kho mới thành công!";
         return "Cập nhật kho mới thất bại!";
